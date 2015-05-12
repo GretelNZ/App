@@ -1,2 +1,2 @@
-# App
+CorpseBook (Name TBD)
 App overview
