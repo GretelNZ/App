@@ -24,6 +24,8 @@ Release 0:
 Release 1:
 * create and implement basic style of sign up page
 
+Release 2:
+* create new story page
 
 ----
 * User interaction
