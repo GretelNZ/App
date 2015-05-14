@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CorpseBook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../css/application.css">
+  <link rel="stylesheet" type="text/css" href="../css/sign-in.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="../javascripts/trial-ajax.js"></script>
+  <script type="text/javascript" src="../javascripts/story.js"></script>
+</head>
+<body>
+<section class="container">
+  <div class="new-story">
+    <h1>Create New Story</h1>
+    <form method="post" class="new-story-form" action="#">
+      <p><input type="text" name="title" value="" placeholder="Title"></p>
+      <p><input type="text" name="latitude" value="" placeholder="Latitude"></p>
+      <p><input type="text" name="longitude" value="" placeholder="Longitude"></p>
+      <select name="contribution-limit">
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+      <p class="submit"><input type="submit" name="commit" value="Submit"></p>
+    </form>
+  </div>
+</section>
+</body>
+</html>
