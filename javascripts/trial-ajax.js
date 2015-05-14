@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  $('body').click('.container', function(){
+  $('.container').click('h1', function(e){
+    e.preventDefault();
     $.ajax({
       url: 'http://corpsebook.herokuapp.com/',
       type: 'GET',
@@ -10,5 +11,22 @@ $(document).ready(function(){
         console.log("error");
       }
     });
+  });
+  $('.sign-in').on('submit', function(e){
+    e.preventDefault();
+    var signInInfo = $(e.target).serialize();
+    console.log(signInInfo);
+    $.ajax({
+      url: 'http://corpsebook.herokuapp.com/create',
+      type: 'POST',
+      data: {signInInfo},
+      success: function(result){
+        console.log("yes");
+        console.log(result);
+      },
+      error: function(status){
+        console.log(status);
+      }
+    })
   });
 });
