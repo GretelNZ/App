@@ -18,11 +18,14 @@ App pages
 * Contribute to existing story
 
 
-First release:
+Release 0:
 * initial ajax get request to Hello World rails server to establish API connection
+
+Release 1:
+* create and implement basic style of sign up page
 
 
 ----
 * User interaction
-* Story creationg/search
+* Story creation/search
 
