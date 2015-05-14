@@ -12,7 +12,8 @@ $(document).ready(function(){
       }
     });
   });
-  $('.sign-in').on('submit', function(e){
+
+  $('.sign-in-form').on('submit', function(e){
     e.preventDefault();
     var signInInfo = $(e.target).serialize();
     console.log(signInInfo);
