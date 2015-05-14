@@ -2,7 +2,7 @@ $(document).ready(function(){
   // $('.container').click('h1', function(e){
   //   e.preventDefault();
   //   $.ajax({
-  //     url: 'http://corpsebook.herokuapp.com/',
+  //     url: 'http://corpsebook-server.herokuapp.com/stories',
   //     type: 'GET',
   //     success: function(response){
   //       console.log(response);
