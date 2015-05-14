@@ -8,7 +8,9 @@ App overview
 
 
 * initial ajax get request to Hello World rails server to establish API connection
-* 
+
+
+----
 * User interaction
 * Story creationg/search
-* 
+
