@@ -5,23 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../css/application.css">
+    <link rel="stylesheet" type="text/css" href="../css/sign-in.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="../javascripts/trial-ajax.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Hello</h1>
-    </div>
-      <div>
-        <h1>Sign In</h1>
-        <div>
-          <form class="sign-in" method="get" action="#">
-            <input type="button" value="Facebook">
-            <input type="text" name="email" placeholder="email">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="Submit">
-          </form>
-        </div>
-    </div>
+    <section class="container">
+      <div class="sign-in">
+        <h1>CorpseBook Sign In</h1>
+        <form method="post" class="sign-in-form" action="#">
+          <p><input type="button" name="facebook" value="Sign In With Facebook"></p>
+          <p><input type="text" name="email" value="" placeholder="Email"></p>
+          <p><input type="password" name="password" value="" placeholder="Password"></p>
+          <p class="submit"><input type="submit" name="commit" value="Submit"></p>
+        </form>
+      </div>
+     </section>
   </body>
 </html>
