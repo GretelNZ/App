@@ -5,3 +5,24 @@ CorpseBook (Name TBD)
 
 App overview
 ------------
+* Javascript-based app for user interface on desktop
+* HTML templates
+* Sass CSS framework
+* Google Maps integration
+
+App pages
+----------
+* Sign In/Up (Facebook/Google)
+* View Stories (search?)
+* Make New Story
+* Contribute to existing story
+
+
+First release:
+* initial ajax get request to Hello World rails server to establish API connection
+
+
+----
+* User interaction
+* Story creationg/search
+
