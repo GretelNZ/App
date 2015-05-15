@@ -56,17 +56,29 @@ describe("Story", function() {
       // });
 
       // expect(doneFn).toHaveBeenCalled()
+    });
+  });
 
+  describe("#getAll", function() {
+    beforeEach(function() {
+      jasmine.Ajax.install();
+    });
 
+    afterEach(function(){
+      jasmine.Ajax.uninstall();
+    });
 
+    it("gets a json object of all stories", function() {
 
+      var doneFn = jasmine.createSpy("success");
+      var errorFn = jasmine.createSpy("failure");
+
+      Story.getAll();
+
+      var request = jasmine.Ajax.requests.mostRecent();
+
+      expect(request.url).toBe('https://corpsebook-server.herokuapp.com/stories');
+      expect(request.method).toBe('GET');
     });
   });
 });
-
-// Story:
-
-// .title
-// .origin_latitude
-// .origin_longitude geocode (pair of coordinates) eg. {lat: -41.2969092,lng: 174.7742193}
-// .contribution_limit

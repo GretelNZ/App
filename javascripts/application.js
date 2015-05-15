@@ -1,17 +1,5 @@
 $(document).ready(function(){
-  // $('.container').click('h1', function(e){
-  //   e.preventDefault();
-  //   $.ajax({
-  //     url: 'http://corpsebook-server.herokuapp.com/stories',
-  //     type: 'GET',
-  //     success: function(response){
-  //       console.log(response);
-  //     },
-  //     error: function(){
-  //       console.log("error");
-  //     }
-  //   });
-  // });
+  Story.getAll();
 
 
 // NEW USER
@@ -53,4 +41,8 @@ $(document).ready(function(){
 
     return newStory;
   });
+
+// SUBMIT NEW Story
+
+
 });
