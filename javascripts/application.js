@@ -42,10 +42,6 @@ $(document).ready(function(){
     return newStory;
   });
 
-  $('.container').on('submit', '.render-story', function(){} )
-
-
-
 // SUBMIT NEW Contribution
 
   $('.add-contribution-form').on('submit', function(e){
