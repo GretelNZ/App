@@ -52,3 +52,17 @@ function generateStory(story){
 
 }
 
+Story.addContribution = function(formData, success, failure){
+  $.ajax({
+    url: 'https://corpsebook-server.herokuapp.com/stories',
+    type: 'POST',
+    dataType: 'json',
+    data: formData,
+    success: function(data) {
+      success(data)
+    },
+    error: function() {
+      failure()
+    }
+  });
+}

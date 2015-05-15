@@ -1,1 +1,27 @@
-contribute.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CorpseBook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../css/application.css">
+  <link rel="stylesheet" type="text/css" href="../css/sign-in.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="../javascripts/application.js"></script>
+  <script type="text/javascript" src="../javascripts/contribution.js"></script>
+  <script type="text/javascript" src="../javascripts/story.js"></script>
+</head>
+<body>
+  <section class="container">
+    <div class="new-story">
+      <h1>Add Contribution</h1>
+      <form enctype='application/json' class="add-contribution-form">
+        <p><textarea name="contribution[content]" value="" placeholder="Content"></textarea></p>
+        <p><input type="text" name="contribution[latitude]" value="" placeholder="Latitude"></p>
+        <p><input type="text" name="contribution[longitude]" value="" placeholder="Longitude"></p>
+        <p class="submit"><input type="submit" value="Submit"></p>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
