@@ -27,6 +27,12 @@ Release 1:
 Release 2:
 * create new story page
 
+Release 3:
+* get stories on stories page
+
+Release 4:
+* create contribution
+
 ----
 * User interaction
 * Story creation/search
