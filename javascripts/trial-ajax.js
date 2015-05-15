@@ -37,10 +37,17 @@ $(document).ready(function(){
 // SUBMIT NEW Story
 // ___________________
   $('.new-story-form').on('submit', function(e){
+
     e.preventDefault();
-    var newStory = $(e.target).serialize();
-    var story = new Story(newStory);
-    story.submit(newStory);
+    var story = $(e.target).serializeArray();
+    // var newStory = new Story(story);
+    // var newStory = $(e.target).serialize();
+    // var story = new Story($(e.target).serialize());
+    // console.log(story[0]['value']);
+    var newStory = Story.create(story);
     console.log(newStory);
+
+
+    // story.submit(newStory);
   });
 });

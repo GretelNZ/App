@@ -14,16 +14,16 @@
 <section class="container">
   <div class="new-story">
     <h1>Create New Story</h1>
-    <form method="post" class="new-story-form" action="#">
-      <p><input type="text" name="title" value="" placeholder="Title"></p>
-      <p><input type="text" name="latitude" value="" placeholder="Latitude"></p>
-      <p><input type="text" name="longitude" value="" placeholder="Longitude"></p>
-      <select name="contribution-limit">
+    <form enctype='application/json' class="new-story-form">
+      <p><input type="text" name="story[title]" value="" placeholder="Title"></p>
+      <p><input type="text" name="story[origin_latitude]" value="" placeholder="Latitude"></p>
+      <p><input type="text" name="story[origin_longitude]" value="" placeholder="Longitude"></p>
+      <select name="story[contribution_limit]">
         <option value="10">10</option>
         <option value="15">15</option>
         <option value="20">20</option>
       </select>
-      <p class="submit"><input type="submit" name="commit" value="Submit"></p>
+      <p class="submit"><input type="submit" value="Submit"></p>
     </form>
   </div>
 </section>
