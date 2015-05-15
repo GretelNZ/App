@@ -80,18 +80,5 @@ describe("Story", function() {
       expect(request.url).toBe('https://corpsebook-server.herokuapp.com/stories');
       expect(request.method).toBe('GET');
     });
-
   });
-
-  // describe("generateStory", function() {
-  //   it("takes a story object as parameter")
-  // });
-
 });
-
-// Story:
-
-// .title
-// .origin_latitude
-// .origin_longitude geocode (pair of coordinates) eg. {lat: -41.2969092,lng: 174.7742193}
-// .contribution_limit
