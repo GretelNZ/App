@@ -42,7 +42,25 @@ $(document).ready(function(){
     return newStory;
   });
 
-// SUBMIT NEW Story
+// SUBMIT NEW Contribution
 
+  $('.add-contribution-form').on('submit', function(e){
+
+    e.preventDefault();
+    var newContribution;
+    var contribution = $(e.target).serialize();
+
+    var success = function(result){
+      console.log("success");
+      newContribution = new Contribution(result.contribution);
+    }
+
+    var failure = function(error){
+      console.log("error", error);
+    }
+    Story.createContribution(contribution, success, failure);
+
+    return newContribution;
+  });
 
 });

@@ -37,8 +37,8 @@ Story.getAll = function(){
 function generateStory(story){
   var htmlString =  '<div class="story-list-render">';
     htmlString += '<h1>Story List</h1>';
-      for (var i = 0; i <story.length; i++) {
-        htmlString += '<ul class="render-story" style="border: 2px solid green; list-style: none;">';
+      for (var i = 0; i < story.length; i++) {
+        htmlString += '<ul id=' + story[i].id + ' class="render-story" style="border: 2px solid green; list-style: none;">';
         htmlString += '<li>Title: '+ story[i].title +'</li>';
         htmlString += '<li>Latitude: '+ story[i].origin_latitude +'</li>';
         htmlString += '<li>Longitude: '+ story[i].origin_longitude +'</li>';
@@ -52,9 +52,9 @@ function generateStory(story){
 
 }
 
-Story.addContribution = function(formData, success, failure){
+Story.createContribution = function(formData, success, failure){
   $.ajax({
-    url: 'https://corpsebook-server.herokuapp.com/stories',
+    url: 'https://corpsebook-server.herokuapp.com/stories/' + formData.story_id + '/contributions',
     type: 'POST',
     dataType: 'json',
     data: formData,
