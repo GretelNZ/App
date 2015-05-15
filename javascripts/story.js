@@ -36,19 +36,19 @@ Story.getAll = function(){
 
 function generateStory(story){
   var htmlString =  '<div class="story-list-render">';
-      htmlString += '<h1>Story List</h1>';
-          for (var i = 0; i <story.length; i++) {
-              htmlString += '<ul class="render-story" style="border: 2px solid green; list-style: none;">';
-              htmlString += '<li>Title: '+ story[i].title +'</li>';
-              htmlString += '<li>Latitude: '+ story[i].origin_latitude +'</li>';
-              htmlString += '<li>Longitude: '+ story[i].origin_longitude +'</li>';
-              htmlString += '<li>Contribution Length: '+ story[i].contribution_limit +'</li>';
-              htmlString += '<li><p class="submit"><input type="submit" value="Contribute"></p></li>';
-              htmlString += '</ul>';
-          };
+    htmlString += '<h1>Story List</h1>';
+      for (var i = 0; i <story.length; i++) {
+        htmlString += '<ul class="render-story" style="border: 2px solid green; list-style: none;">';
+        htmlString += '<li>Title: '+ story[i].title +'</li>';
+        htmlString += '<li>Latitude: '+ story[i].origin_latitude +'</li>';
+        htmlString += '<li>Longitude: '+ story[i].origin_longitude +'</li>';
+        htmlString += '<li>Contribution Length: '+ story[i].contribution_limit +'</li>';
+        htmlString += '<li><p class="submit"><input type="submit" value="Contribute"></p></li>';
+        htmlString += '</ul>';
+      };
 
-      htmlString += '</div>';
-      return htmlString;
+    htmlString += '</div>';
+    return htmlString;
 
 }
 
