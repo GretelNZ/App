@@ -42,6 +42,10 @@ $(document).ready(function(){
     return newStory;
   });
 
+  $('.container').on('submit', '.render-story', function(){} )
+
+
+
 // SUBMIT NEW Contribution
 
   $('.add-contribution-form').on('submit', function(e){
@@ -52,7 +56,7 @@ $(document).ready(function(){
 
     var success = function(result){
       console.log("success");
-      newContribution = new Contribution(result.contribution);
+      // newContribution = new Contribution(result.contribution);
     }
 
     var failure = function(error){

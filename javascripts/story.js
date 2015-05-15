@@ -52,9 +52,15 @@ function generateStory(story){
 
 }
 
+
+
+
+
+
 Story.createContribution = function(formData, success, failure){
+  console.log(formData)
   $.ajax({
-    url: 'https://corpsebook-server.herokuapp.com/stories/' + formData.story_id + '/contributions',
+    url: 'https://corpsebook-server.herokuapp.com/stories/' +  '/contributions',
     type: 'POST',
     dataType: 'json',
     data: formData,
@@ -66,3 +72,5 @@ Story.createContribution = function(formData, success, failure){
     }
   });
 }
+
+// formData.story_id
