@@ -39,15 +39,18 @@ $(document).ready(function(){
   $('.new-story-form').on('submit', function(e){
 
     e.preventDefault();
-    var story = $(e.target).serializeArray();
-    // var newStory = new Story(story);
-    // var newStory = $(e.target).serialize();
-    // var story = new Story($(e.target).serialize());
-    // console.log(story[0]['value']);
-    var newStory = Story.create(story);
-    console.log(newStory);
+    var newStory;
+    var story = $(e.target).serialize();
 
+    var success = function(result){
+      console.log("success");
+      newStory = new Story(result.story);
+    }
+    var failure = function(error){
+      console.log("error", error);
+    }
+    Story.create(story, success, failure);
 
-    // story.submit(newStory);
+    return newStory;
   });
 });

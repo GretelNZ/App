@@ -25,7 +25,7 @@ describe("Story", function() {
     expect(story.contribution_limit).toEqual(10);
   });
 
-  describe("#submit", function() {
+  describe("#create", function() {
 
     beforeEach(function() {
       jasmine.Ajax.install();
@@ -35,29 +35,31 @@ describe("Story", function() {
       jasmine.Ajax.uninstall();
     });
 
-    it("sends a json object of new story", function() {
-
+    it("sends a json object of based on new story form data", function() {
+      var formData = "story%5Btitle%5D=The+Best+Story&story%5Borigin_latitude%5D=123&story%5Borigin_longitude%5D=321&story%5Bcontribution_limit%5D=15";
       var doneFn = jasmine.createSpy("success");
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function(args) {
-        if (this.readyState == this.DONE) {
-          doneFn(this.responseText);
-          console.log(this.responseText);
-        }
-      };
+      var errorFn = jasmine.createSpy("failure");
 
-      xhr.open("POST", "http://corpsebook-server.herokuapp.com/stories");
-      xhr.send();
+      Story.create(formData, doneFn, errorFn);
 
-      expect(jasmine.Ajax.requests.mostRecent().url).toBe('http://corpsebook-server.herokuapp.com/stories');
-      expect(doneFn).not.toHaveBeenCalled();
+      var request = jasmine.Ajax.requests.mostRecent();
 
-      jasmine.Ajax.requests.mostRecent().respondWith({
-        "status": 200,
-        "contentType": 'text/plain',
-        "responseText": 'awesome response'
-      });
-      expect(doneFn).toHaveBeenCalledWith('awesome response');
+      expect(request.url).toBe('https://corpsebook-server.herokuapp.com/stories');
+      expect(request.method).toBe('POST');
+
+      // expect(request.data()).toEqual(formData);
+      // expect(doneFn).not.toHaveBeenCalled();
+      // jasmine.Ajax.requests.mostRecent().respondWith({
+      //   "status" : 200,
+      //   "contentType" : "text/plain",
+      //   "responseText" : "meow"
+      // });
+
+      // expect(doneFn).toHaveBeenCalled()
+
+
+
+
     });
   });
 });
