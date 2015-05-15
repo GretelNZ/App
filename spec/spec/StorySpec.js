@@ -56,12 +56,37 @@ describe("Story", function() {
       // });
 
       // expect(doneFn).toHaveBeenCalled()
-
-
-
-
     });
   });
+
+  describe("#getAll", function() {
+    beforeEach(function() {
+      jasmine.Ajax.install();
+    });
+
+    afterEach(function(){
+      jasmine.Ajax.uninstall();
+    });
+
+    it("gets a json object of all stories", function() {
+
+      var doneFn = jasmine.createSpy("success");
+      var errorFn = jasmine.createSpy("failure");
+
+      Story.getAll();
+
+      var request = jasmine.Ajax.requests.mostRecent();
+
+      expect(request.url).toBe('https://corpsebook-server.herokuapp.com/stories');
+      expect(request.method).toBe('GET');
+    });
+
+  });
+
+  // describe("generateStory", function() {
+  //   it("takes a story object as parameter")
+  // });
+
 });
 
 // Story:
