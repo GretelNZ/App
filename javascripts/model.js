@@ -1,3 +1,14 @@
+var map;
+var geocoder = new google.maps.Geocoder();
+
+function initialize() {
+  var mapOptions = {
+    center: { lat: -41, lng: 170},
+    zoom: 13
+  };
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+}
+
 function getAllStories() {
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories',
@@ -11,7 +22,7 @@ function getAllStories() {
   });
 };
 
-function getStory(story_id) { // window.location.href --> this is the actual URL we need ,
+function getStory(story_id) {
   $.ajax({
     url: "https://corpsebook-server.herokuapp.com/stories/" + story_id,
     type: "GET",
@@ -24,7 +35,7 @@ function getStory(story_id) { // window.location.href --> this is the actual URL
   })
 }
 
-function createContribution(currentObj) { // window.location.href + '/contributions' --> this is the actual URL we need
+function createContribution(currentObj) {
   var $this = $(currentObj)
   var storyId = $this.parents('form#contributionForm').find('input[name="story_id"]').val()
   $.ajax({
@@ -67,6 +78,7 @@ function getNearby(map, lat, lng) {
       }
     },
     success: function(data) {
+      console.log(data)
       $.each(data, function(index, value){
       var lat = value.lat
       var lng = value.lng
@@ -89,6 +101,22 @@ function getNearby(map, lat, lng) {
   })
 }
 
+function getGeocode(address) {
+  var address = address.parents('form#searchLocationForm').find('input[name="location"]').val()
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    console.log(results);
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('There was a problem.')
+    }
+  });
+}
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -108,7 +136,7 @@ function formatMap(lat, lng) {
   displayMap();
   var mapOptions = {
     center: { lat: lat, lng: lng},
-    zoom: 5
+    zoom: 13
   };
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   getNearby(map, lat, lng);

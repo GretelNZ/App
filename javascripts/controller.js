@@ -11,6 +11,7 @@ $(document).ready(function(){
   });
 
   $('body').on('click', 'button[name="btn-submit"]', function() {
+    e.preventDefault();
     createContribution(this)
   });
 
@@ -24,6 +25,15 @@ $(document).ready(function(){
 
   $('body').on('click', '#nearby_button', function(){
     getLocation();
+  });
+
+  $('body').on('click', '#search_button', function(){
+    formSearch();
+  });
+
+  $('body').on('click', 'input[name="btn-search-stories"]', function(e) {
+    e.preventDefault();
+    getGeocode($(this));
   });
 
 
