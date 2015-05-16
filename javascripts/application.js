@@ -2,6 +2,7 @@ $(document).ready(function(){
   Story.getAll();
 
 
+
 // NEW USER
 // ___________________
   // $('.sign-in-form').on('submit', function(e){
@@ -52,12 +53,14 @@ $(document).ready(function(){
 
     var success = function(result){
       console.log("success");
-      // newContribution = new Contribution(result.contribution);
+      newContribution = new Contribution(result.contribution);
+      console.log(newContribution);
     }
 
     var failure = function(error){
       console.log("error", error);
     }
+
     Story.createContribution(contribution, success, failure);
 
     return newContribution;
