@@ -1,6 +1,7 @@
 function homePage() {
   $('#container').append('<button id="stories_button">Stories</button>');
   $('#container').append('<button id="new_story_button">New Story</button>');
+  $('#container').append('<button id="nearby_button">Nearby Stories</button>');
 };
 
 function allStories(data) {
@@ -22,7 +23,7 @@ function contributePage(story, story_id) {
   $('#container').empty();
   var storyHTML = "<div class='story-detail'>";
   storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-  storyHTML += "<p><label>Last Contribution:</label> "+story.last_contribution == null ? story.last_contribution['content'] : ""+"</p>"
+  storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution == null ? story.last_contribution['content'] : "" + "</p>"
   storyHTML += "<form method='post' id='contributionForm' action='#' enctype='application/json' class='add-contribution-form'>";
   storyHTML += "<div><label>Username:</label></div>";
   storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
@@ -50,4 +51,9 @@ function formNewStory() {
     formHTML += '<p class="submit"><input type="submit" value="Submit" name="btn-create-story"></p>'
     formHTML += '</form></div>'
     $("#container").append(formHTML);
+}
+
+function displayMap() {
+  $('#container').empty();
+  $('#container').append('<div id="map-canvas"></div>')
 }

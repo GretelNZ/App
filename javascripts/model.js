@@ -49,11 +49,67 @@ function createStory(currentObj) {
     dataType: 'json',
     data: $this.parents('form.new-story-form').serialize(),
     success: function(data) {
-      // console.log(data)
       getStory(data.story["id"])
     },
     error: function() {
       alert('Error')
     }
   });
+}
+
+function getNearby(map, lat, lng) {
+  $.ajax({
+    url: "https://corpsebook-server.herokuapp.com/nearby",
+    type: "GET",
+    data: { 'search': {
+      'lat': lat,
+      'lng': lng
+      }
+    },
+    success: function(data) {
+      $.each(data, function(index, value){
+      var lat = value.lat
+      var lng = value.lng
+      var myLatlng = new google.maps.LatLng(lat, lng)
+      var title = value.title
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: title
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        window.location.href = this.url;
+      });
+    });
+    },
+    error: function() {
+      alert("Error");
+    }
+  })
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert('Sorry, we need your location');
+  }
+};
+
+function showPosition(position) {
+  var lat = position.coords.latitude
+  var lng = position.coords.longitude
+  formatMap(lat, lng);
+};
+
+function formatMap(lat, lng) {
+  console.log(lat)
+  displayMap();
+  var mapOptions = {
+    center: { lat: lat, lng: lng},
+    zoom: 5
+  };
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  getNearby(map, lat, lng);
 }

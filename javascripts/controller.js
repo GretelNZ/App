@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   homePage();
 
   $('body').on('click', '#stories_button', function(){
@@ -9,18 +10,20 @@ $(document).ready(function(){
     getStory($( this).attr("value"));
   });
 
-  $('body').on('click', 'button[name="btn-submit"]', function(e) {
-    e.preventDefault()
+  $('body').on('click', 'button[name="btn-submit"]', function() {
     createContribution(this)
   });
 
   $('body').on('click', '#new_story_button', function(){
-      formNewStory();
+    formNewStory();
   });
 
-  $('body').on('click', 'input[name="btn-create-story"]', function(e) {
-    e.preventDefault()
+  $('body').on('click', 'input[name="btn-create-story"]', function() {
     createStory($(this))
+  });
+
+  $('body').on('click', '#nearby_button', function(){
+    getLocation();
   });
 
 
