@@ -21,14 +21,15 @@ function allStories(data) {
   $('#container').append('</ul>');
 };
 
-function contributePage(story, story_id) {
+
+function contributePage(story, story_id){
   $('#container').empty();
   var storyHTML = "<div class='story-detail'>";
   storyHTML += "<h3>Title of story: " +story.title+"</h3>";
   storyHTML += storyViewLogic(story, story_id);
   storyHTML += "</div>";
   $("#container").append(storyHTML);
-};
+}
 
 function formNewStory() {
   var formHTML = '<div class="new-story">'
