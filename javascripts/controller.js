@@ -33,7 +33,10 @@ $(document).ready(function(){
   });
 
   $('body').on('click', 'input[name="btn-search-stories"]', function() {
+    displayMap();
     getGeocode($(this));
+    // formatMap(coords);
+    // initialize();
   });
 
 
