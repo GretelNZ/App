@@ -118,9 +118,32 @@ function getNearby(map, lat, lng) {
   })
 }
 
+function inRange(story){
+
+  $.ajax({
+    url: 'https://corpsebook-server.herokuapp.com/stories/'+story.id+'/in_range',
+    type: 'GET',
+    data: {search: {lat: story.lat, lng: story.lng}},
+    success: function(data){
+      if (data.in_range){
+        renderStory(storyViewLogic(story, story.id));
+      } else {
+        alert("Not in range")
+      }
+    },
+    error: function(response){
+      console.log(response);
+    }
+  })
+}
+
+function inRangeLogic(story, story_id){
+  if (story.last_contribution != null) {
+    return
+}
+
 function storyViewLogic(story, story_id) {
   if (story.last_contribution != null) {
-    console.log(lastContribution(story))
     var incompleteStoryHTML = lastContribution(story);
     return incompleteStoryHTML += storyIncompleted(story, story_id);
   } else if (story.all_contributions) {
@@ -153,7 +176,7 @@ function completedStory(stories) {
   $.each(stories, function(index, story){
     fullStoryHTML += story.content + ' '
   });
-  3fullStoryHTML += '</p></div>'
+  fullStoryHTML += '</p></div>'
   return fullStoryHTML
 }
 
