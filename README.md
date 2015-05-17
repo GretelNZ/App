@@ -31,7 +31,7 @@ Release 3:
 * get stories on stories page
 
 Release 4:
-* create contribution
+* create contribution on story page
 
 ----
 * User interaction

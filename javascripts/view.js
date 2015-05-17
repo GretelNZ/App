@@ -59,7 +59,7 @@ function formSearch() {
   searchHTML += '<h1>Search by Location</h1>'
   searchHTML += '<form id="searchLocationForm" enctype="application/json" class="search-stories-form">'
   searchHTML += '<p><input type="text" name="location" value="" placeholder="Location"></p>'
-  searchHTML += '<p class="submit"><input value="Submit" name="btn-search-stories"></p>'
+  searchHTML += '<p class="submit"><button type="submit" value="Submit" id="btn-search-stories">Submit</button></p>'
   searchHTML += '</form></div>'
   $("#container").append(searchHTML);
 }
