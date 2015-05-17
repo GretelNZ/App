@@ -1,5 +1,6 @@
 function homePage() {
-  $('#container').append('<button id="stories_button">Stories</button>');
+  $('#container').append('<button id="incompleted_stories_button">Incompleted Stories</button>');
+  $('#container').append('<button id="completed_stories_button">Completed Stories</button>');
   $('#container').append('<button id="new_story_button">New Story</button>');
   $('#container').append('<button id="nearby_button">Nearby Stories</button>');
   $('#container').append('<button id="search_button">Search Stories</button>');
@@ -24,15 +25,7 @@ function contributePage(story, story_id) {
   $('#container').empty();
   var storyHTML = "<div class='story-detail'>";
   storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-  storyHTML += storyContributionNull(story);
-  storyHTML += "<form id='contributionForm' enctype='application/json' class='add-contribution-form'>";
-  storyHTML += "<div><label>Username:</label></div>";
-  storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
-  storyHTML += "<div><label>Contribution:</label></div>";
-  storyHTML += "<div><textarea name='contribution[content]' id='contribution' placeholder='Add a line to the story!'></textarea></div>"
-  storyHTML += "<div><button name='btn-submit' >Submit</button></div>"
-  storyHTML += "<input type='hidden' name='story_id' value='"+ story_id +"' />"
-  storyHTML + "</form>";
+  storyHTML += storyViewLogic(story, story_id);
   storyHTML += "</div>";
   $("#container").append(storyHTML);
 };
