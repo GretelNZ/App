@@ -118,18 +118,26 @@ function getNearby(map, lat, lng) {
   })
 }
 
-function inRange(story){
+function getTheRealStory(story_id) {
+  $.ajax({
+    url: "https://corpsebook-server.herokuapp.com/stories/" + story_id,
+    type: "GET",
+    success: function(data) {
+      inRange(data)
+    },
+    error: function() {
+      console.log("Error");
+    }
+  })
+}
 
+function inRange(story){
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories/'+story.id+'/in_range',
     type: 'GET',
     data: {search: {lat: story.lat, lng: story.lng}},
     success: function(data){
-      if (data.in_range){
-        renderStory(storyViewLogic(story, story.id));
-      } else {
-        alert("Not in range")
-      }
+      theRealStoryViewLogic(story, story.id, data.in_range)
     },
     error: function(response){
       console.log(response);
@@ -137,9 +145,42 @@ function inRange(story){
   })
 }
 
-function inRangeLogic(story, story_id){
-  if (story.last_contribution != null) {
-    return
+function theRealStoryViewLogic(story, story_id, bool) {
+  console.log(story);
+  if (story.contributions_length < story.contribution_limit && bool == true){
+    console.log('this is incomplete and in range');
+    $('#container').empty();
+    var storyHTML = "<div class='story-detail'>";
+    storyHTML += "<h3>Title of story: " +story.title+"</h3>";
+    storyHTML += lastContribution(story);
+    storyHTML += storyIncomplete(story, story_id);
+    storyHTML += "</div>";
+    $("#container").append(storyHTML);
+  } else if (story.contributions_length < story.contribution_limit && bool == false) {
+    $('#container').empty();
+    var storyHTML = "<div class='story-detail'>";
+    storyHTML += "<h3>Title of story: " +story.title+"</h3>";
+    storyHTML += lastContribution(story);
+    storyHTML += "</div>";
+    $("#container").append(storyHTML);
+    console.log('this is incomplete but not in range');
+  } else if (story.contributions_length >= story.contributions_limit && bool == true){
+    $('#container').empty();
+    var storyHTML = "<div class='story-detail'>";
+    storyHTML += "<h3>Title of story: " +story.title+"</h3>";
+    storyHTML += completeStory(story.all_contributions);
+    storyHTML += "</div>";
+    $("#container").append(storyHTML);
+    console.log('this is complete');
+  } else {
+    $('#container').empty();
+    var storyHTML = "<div class='story-detail'>";
+    storyHTML += "<h3>Title of story: " +story.title+"</h3>";
+    storyHTML += completeStory(story.all_contributions);
+    storyHTML += "</div>";
+    $("#container").append(storyHTML);
+    console.log('this is complete and not in range')
+  }
 }
 
 function storyViewLogic(story, story_id) {
