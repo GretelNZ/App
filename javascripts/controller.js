@@ -1,12 +1,14 @@
 $(document).ready(function(){
 
   var selector = $("#container");
+  var appController = new AppController($("#navbar"));
   var storyController = new StoryController(selector);
   var contributionController = new ContributionController(selector);
+  appController.run();
   storyController.run();
   contributionController.run();
 
-  homePage();
+  // homePage();
 
   $('body').on('click', '#incomplete_stories_button', function(){
     getIncompleteStories();

@@ -1,3 +1,6 @@
 function ContributionModel(){
+}
+
+ContributionModel.prototype = {
 
 }
