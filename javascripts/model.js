@@ -77,11 +77,12 @@ function getNearby(map, lat, lng) {
       var lng = value.lng
       var myLatlng = new google.maps.LatLng(lat, lng)
       var title = value.title
-
+      console.log(value.id)
       var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title: title
+        title: title,
+        url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
       });
       google.maps.event.addListener(marker, 'click', function() {
         window.location.href = this.url;
