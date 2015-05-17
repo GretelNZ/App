@@ -1,6 +1,6 @@
 function homePage() {
-  $('#container').append('<button id="incompleted_stories_button">Incompleted Stories</button>');
-  $('#container').append('<button id="completed_stories_button">Completed Stories</button>');
+  $('#container').append('<button id="incomplete_stories_button">Incomplete Stories</button>');
+  $('#container').append('<button id="complete_stories_button">Complete Stories</button>');
   $('#container').append('<button id="new_story_button">New Story</button>');
   $('#container').append('<button id="nearby_button">Nearby Stories</button>');
   $('#container').append('<button id="search_button">Search Stories</button>');

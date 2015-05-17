@@ -1,7 +1,7 @@
 var geocoder = new google.maps.Geocoder();
 var map;
 
-function getIncompletedStories() {
+function getIncompleteStories() {
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories',
     type: 'GET',
@@ -14,7 +14,7 @@ function getIncompletedStories() {
   });
 };
 
-function getCompletedStories() {
+function getCompleteStories() {
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/completed',
     type: 'GET',
@@ -108,7 +108,7 @@ function getNearby(map, lat, lng) {
         url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
       });
       google.maps.event.addListener(marker, 'click', function() {
-        window.location.href = this.url;
+        getStory(value.id)
       });
     });
     },
@@ -145,19 +145,19 @@ function inRangeLogic(story, story_id){
 function storyViewLogic(story, story_id) {
   if (story.last_contribution != null) {
     var incompleteStoryHTML = lastContribution(story);
-    return incompleteStoryHTML += storyIncompleted(story, story_id);
+    return incompleteStoryHTML += storyIncomplete(story, story_id);
   } else if (story.all_contributions) {
-    return completedStory(story.all_contributions);
+    return completeStory(story.all_contributions);
   } else {
-    return storyIncompleted(story, story_id);
+    return storyIncomplete(story, story_id);
   }
 }
 
 function lastContribution(story) {
-  return "<p><label>Last Contribution:</label> " + story.last_contribution['content']  + "</p>";
+  return "<p><label>Last Contribution:</label> " + story.last_contribution['content'] + ' - ' + story.last_contribution['username'] + "</p>";
 }
 
-function storyIncompleted(story, story_id) {
+function storyIncomplete(story, story_id) {
     var storyHTML = "<form id='contributionForm' enctype='application/json' class='add-contribution-form'>";
     storyHTML += "<div><label>Username:</label></div>";
     storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
@@ -169,14 +169,17 @@ function storyIncompleted(story, story_id) {
     return storyHTML
 }
 
-function completedStory(stories) {
+function completeStory(stories) {
   console.log(stories)
     var fullStoryHTML = '<div id="full-story">'
-    fullStoryHTML += '<p>'
+    fullStoryHTML += '<ul>'
   $.each(stories, function(index, story){
-    fullStoryHTML += story.content + ' '
+    fullStoryHTML += '<li>'
+    fullStoryHTML += story.content + ' - '
+    fullStoryHTML += '<i>' + story.username + '</i>'
+    fullStoryHTML += '</li>'
   });
-  fullStoryHTML += '</p></div>'
+  fullStoryHTML += '</ul></div>'
   return fullStoryHTML
 }
 
