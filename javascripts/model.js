@@ -1,13 +1,5 @@
-var map;
 var geocoder = new google.maps.Geocoder();
-
-function initialize() {
-  var mapOptions = {
-    center: { lat: -41, lng: 170},
-    zoom: 13
-  };
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-}
+var map;
 
 function getAllStories() {
   $.ajax({
@@ -53,12 +45,13 @@ function createContribution(currentObj) {
 };
 
 function createStory(currentObj) {
-  var $this = $(currentObj)
+  var $this = $(currentObj).serialize()
+  console.log($this)
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories',
     type: 'POST',
     dataType: 'json',
-    data: $this.parents('form.new-story-form').serialize(),
+    data: $this,
     success: function(data) {
       getStory(data.story["id"])
     },
@@ -101,43 +94,7 @@ function getNearby(map, lat, lng) {
   })
 }
 
-function getGeocode(address) {
-  var address = address.parents('form#searchLocationForm').find('input[name="location"]').val()
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    console.log(results);
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('There was a problem.')
-    }
-  });
-}
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    alert('Sorry, we need your location');
-  }
-};
 
-function showPosition(position) {
-  var lat = position.coords.latitude
-  var lng = position.coords.longitude
-  formatMap(lat, lng);
-};
 
-function formatMap(lat, lng) {
-  console.log(lat)
-  displayMap();
-  var mapOptions = {
-    center: { lat: lat, lng: lng},
-    zoom: 13
-  };
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  getNearby(map, lat, lng);
-}
+

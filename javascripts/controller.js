@@ -1,6 +1,6 @@
 $(document).ready(function(){
-
   homePage();
+
 
   $('body').on('click', '#stories_button', function(){
     getAllStories();
@@ -11,19 +11,20 @@ $(document).ready(function(){
   });
 
   $('body').on('click', 'button[name="btn-submit"]', function() {
-    e.preventDefault();
-    createContribution(this)
+    createContribution(this);
   });
 
   $('body').on('click', '#new_story_button', function(){
     formNewStory();
   });
 
-  $('body').on('click', 'input[name="btn-create-story"]', function() {
+  $('body').on('submit', '.new-story-form', function(e) {
+    e.preventDefault()
     createStory($(this))
   });
 
   $('body').on('click', '#nearby_button', function(){
+    displayMap();
     getLocation();
   });
 
@@ -31,8 +32,7 @@ $(document).ready(function(){
     formSearch();
   });
 
-  $('body').on('click', 'input[name="btn-search-stories"]', function(e) {
-    e.preventDefault();
+  $('body').on('click', 'input[name="btn-search-stories"]', function() {
     getGeocode($(this));
   });
 
