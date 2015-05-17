@@ -7,7 +7,7 @@ $(document).ready(function(){
   });
 
   $('body').on('click', '.more_button', function(){
-    getStory($( this).attr("value"));
+    getStory($(this).attr("value"));
   });
 
   $('body').on('click', 'button[name="btn-submit"]', function() {

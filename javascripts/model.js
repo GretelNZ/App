@@ -94,6 +94,18 @@ function getNearby(map, lat, lng) {
   })
 }
 
+function storyContributionNull(story) {
+  if (story.last_contribution) {
+    return "<p><label>Last Contribution:</label> " + story.last_contribution['content']  + "</p>";
+  } else {
+    return "";
+  }
+}
+
+// function storyCompleted(story) {
+//   if (story.contri)
+// }
+
 
 
 
