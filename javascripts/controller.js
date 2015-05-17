@@ -42,5 +42,4 @@ $(document).ready(function(){
     getGeocode($(this).serialize());
   });
 
-
 }); // end doc ready

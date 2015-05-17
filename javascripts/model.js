@@ -108,7 +108,7 @@ function getNearby(map, lat, lng) {
         url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
       });
       google.maps.event.addListener(marker, 'click', function() {
-        window.location.href = this.url;
+        getStory(value.id)
       });
     });
     },
