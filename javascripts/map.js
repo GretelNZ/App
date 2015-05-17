@@ -16,11 +16,9 @@ function getLocation () {
       }
       formatMap(coords);
   });
-
 }
 
 function formatMap(coords) {
-  console.log(coords)
   var mapOptions = {
     center: { lat: coords.lat, lng: coords.lng},
     zoom: 13
@@ -30,10 +28,8 @@ function formatMap(coords) {
 }
 
 function getGeocode(address){
-  var thisAddress = address.parents('form#searchLocationForm').find('input[name="location"]').val()
-  geocoder.geocode({'address': thisAddress}, function(results, status) {
+  geocoder.geocode({'address': address}, function(results, status) {
     var coords = {lat: results[0].geometry.location.A,  lng: results[0].geometry.location.F }
-    console.log(coords);
     return formatMap(coords);
   })
 }

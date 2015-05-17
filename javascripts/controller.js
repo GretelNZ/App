@@ -32,11 +32,10 @@ $(document).ready(function(){
     formSearch();
   });
 
-  $('body').on('click', 'input[name="btn-search-stories"]', function() {
+  $('body').on('submit', '.search-stories-form', function(e) {
+    e.preventDefault()
     displayMap();
-    getGeocode($(this));
-    // formatMap(coords);
-    // initialize();
+    getGeocode($(this).serialize());
   });
 
 
