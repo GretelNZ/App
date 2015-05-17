@@ -58,8 +58,18 @@ function createContribution(currentObj) {
 };
 
 function createStory(currentObj) {
+  navigator.geolocation.getCurrentPosition(function (position) {
+      var coords = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }
+      postStory(currentObj, coords)
+  });
+}
+
+function postStory(currentObj, coords) {
   var $this = $(currentObj).serialize()
-  console.log($this)
+  $this += '&story%5Blat%5D=' + coords.lat + '&story%5Blng%5D=' + coords.lng
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories',
     type: 'POST',
@@ -90,11 +100,12 @@ function getNearby(map, lat, lng) {
       var lng = value.lng
       var myLatlng = new google.maps.LatLng(lat, lng)
       var title = value.title
-
+      console.log(value.id)
       var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title: title
+        title: title,
+        url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
       });
       google.maps.event.addListener(marker, 'click', function() {
         window.location.href = this.url;

@@ -8,6 +8,7 @@ function getStoryCoords() {
   }
 }
 
+
 function getLocation () {
   navigator.geolocation.getCurrentPosition(function (position) {
       var coords = {
