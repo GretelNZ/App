@@ -102,6 +102,10 @@ function storyContributionNull(story) {
   }
 }
 
+// function storyCompleted(story) {
+//   if (story.contri)
+// }
+
 
 
 
