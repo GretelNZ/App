@@ -3,14 +3,12 @@ function StoryView(selector){
 }
 
 StoryView.prototype = {
-  registerIncompleteStoriesEventHandler: function(getIncompleteStories){
-    this.selector.on('click', '#incompelete_stories_button', function(e){
+  registerIncompleteStoriesEventHandler: function(getIncompleteStories, showIncompleteStories){
+    this.selector.on('click', '#incomplete_stories_button', function(e){
       e.preventDefault();
-      getIncompleteStories(this.showIncompleteStories)
+      getIncompleteStories(showIncompleteStories)
     });
   },
-
-
 
   showIncompleteStories: function(data){
     $('#container').empty();
