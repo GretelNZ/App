@@ -5,6 +5,7 @@ function StoryController(selector){
 
 StoryController.prototype = {
   run: function(){
-    this.view.registerIncompleteStoriesEventHandler(this.model.getIncompleteStories, this.view.showIncompleteStories)
+    this.view.registerIncompleteStoriesEventHandler(this.model.getIncompleteStories, this.view.showStories)
+    this.view.registerCompleteStoriesEventHandler(this.model.getCompleteStories, this.view.showStories)
   }
 }

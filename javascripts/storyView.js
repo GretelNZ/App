@@ -3,14 +3,14 @@ function StoryView(selector){
 }
 
 StoryView.prototype = {
-  registerIncompleteStoriesEventHandler: function(getIncompleteStories, showIncompleteStories){
+  registerIncompleteStoriesEventHandler: function(getIncompleteStories, showStories){
     this.selector.on('click', '#incomplete_stories_button', function(e){
       e.preventDefault();
-      getIncompleteStories(showIncompleteStories)
+      getIncompleteStories(showStories)
     });
   },
 
-  showIncompleteStories: function(data){
+  showStories: function(data){
     $('#container').empty();
     $('#container').append('<ul>');
     $.each(data, function(i, story){
@@ -23,5 +23,12 @@ StoryView.prototype = {
       $('#container').append(storyHTML);
     });
     $('#container').append('</ul>');
+  },
+
+  registerCompleteStoriesEventHandler: function(getCompleteStories, showStories) {
+    this.selector.on('click', '#complete_stories_button', function(e){
+      e.preventDefault();
+      getCompleteStories(showStories);
+    });
   }
 }
