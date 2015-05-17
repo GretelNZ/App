@@ -11,28 +11,50 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
-function getLocation() {
+function getStoryCoords() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
     alert('Sorry, we need your location');
   }
-};
+}
 
-function showPosition(position) {
-  var lat = position.coords.latitude
-  var lng = position.coords.longitude
-  formatMap(lat, lng);
-};
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//   } else {
+//     alert('Sorry, we need your location');
+//   }
+// };
 
-function formatMap(lat, lng) {
+// function showPosition(position) {
+//   var coords = {
+//     lat: position.coords.latitude,
+//     lng: position.coords.longitude
+//   }
+//   return coords
+// };
+
+function getLocation () {
+  navigator.geolocation.getCurrentPosition(function (position) {
+      var coords = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }
+      formatMap(coords);
+  });
+
+}
+
+
+function formatMap(coords) {
   displayMap();
   var mapOptions = {
-    center: { lat: lat, lng: lng},
+    center: { lat: coords.lat, lng: coords.lng},
     zoom: 13
   };
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  getNearby(map, lat, lng);
+  getNearby(map, coords.lat, coords.lng);
 }
 
 function getGeocode(address) {
