@@ -1,5 +1,6 @@
 function homePage() {
-  $('#container').append('<button id="stories_button">Stories</button>');
+  $('#container').append('<button id="incompleted_stories_button">Incompleted Stories</button>');
+  $('#container').append('<button id="completed_stories_button">Completed Stories</button>');
   $('#container').append('<button id="new_story_button">New Story</button>');
   $('#container').append('<button id="nearby_button">Nearby Stories</button>');
   $('#container').append('<button id="search_button">Search Stories</button>');
@@ -24,8 +25,7 @@ function contributePage(story, story_id) {
   $('#container').empty();
   var storyHTML = "<div class='story-detail'>";
   storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-  storyHTML += storyContributionNull(story);
-  storyHTML += storyCompleted(story, story_id);
+  storyHTML += storyViewLogic(story, story_id);
   storyHTML += "</div>";
   $("#container").append(storyHTML);
 };

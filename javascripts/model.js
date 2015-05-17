@@ -1,9 +1,22 @@
 var geocoder = new google.maps.Geocoder();
 var map;
 
-function getAllStories() {
+function getIncompletedStories() {
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories',
+    type: 'GET',
+    success: function(data){
+      allStories(data);
+    },
+    error: function(status, error){
+      alert('Error')
+    }
+  });
+};
+
+function getCompletedStories() {
+  $.ajax({
+    url: 'https://corpsebook-server.herokuapp.com/completed',
     type: 'GET',
     success: function(data){
       allStories(data);
@@ -94,16 +107,23 @@ function getNearby(map, lat, lng) {
   })
 }
 
-function storyContributionNull(story) {
-  if (story.last_contribution) {
-    return "<p><label>Last Contribution:</label> " + story.last_contribution['content']  + "</p>";
+function storyViewLogic(story, story_id) {
+  if (story.last_contribution != null) {
+    console.log(lastContribution(story))
+    var incompleteStoryHTML = lastContribution(story);
+    return incompleteStoryHTML += storyIncompleted(story, story_id);
+  } else if (story.all_contributions) {
+    return completedStory(story.all_contributions);
   } else {
-    return "";
+    return storyIncompleted(story, story_id);
   }
 }
 
-function storyCompleted(story, story_id) {
-  if (story.last_contribution) {
+function lastContribution(story) {
+  return "<p><label>Last Contribution:</label> " + story.last_contribution['content']  + "</p>";
+}
+
+function storyIncompleted(story, story_id) {
     var storyHTML = "<form id='contributionForm' enctype='application/json' class='add-contribution-form'>";
     storyHTML += "<div><label>Username:</label></div>";
     storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
@@ -113,10 +133,19 @@ function storyCompleted(story, story_id) {
     storyHTML += "<input type='hidden' name='story_id' value='"+ story_id +"' />"
     storyHTML += "</form>";
     return storyHTML
-  } else if (story.all_contributions) {
-    return 'test'
-  }
 }
+
+function completedStory(stories) {
+  console.log(stories)
+    var fullStoryHTML = '<div id="full-story">'
+    fullStoryHTML += '<p>'
+  $.each(stories, function(index, story){
+    fullStoryHTML += story.content + ' '
+  });
+  3fullStoryHTML += '</p></div>'
+  return fullStoryHTML
+}
+
 
 
 
