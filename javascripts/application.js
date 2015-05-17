@@ -2,6 +2,7 @@ $(document).ready(function(){
   Story.getAll();
 
 
+
 // NEW USER
 // ___________________
   // $('.sign-in-form').on('submit', function(e){
@@ -42,7 +43,27 @@ $(document).ready(function(){
     return newStory;
   });
 
-// SUBMIT NEW Story
+// SUBMIT NEW Contribution
 
+  $('.add-contribution-form').on('submit', function(e){
+
+    e.preventDefault();
+    var newContribution;
+    var contribution = $(e.target).serialize();
+
+    var success = function(result){
+      console.log("success");
+      newContribution = new Contribution(result.contribution);
+      console.log(newContribution);
+    }
+
+    var failure = function(error){
+      console.log("error", error);
+    }
+
+    Story.createContribution(contribution, success, failure);
+
+    return newContribution;
+  });
 
 });

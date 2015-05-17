@@ -34,21 +34,51 @@ Story.getAll = function(){
     });
 }
 
-function generateStory(story){
+function generateStory(stories){
   var htmlString =  '<div class="story-list-render">';
     htmlString += '<h1>Story List</h1>';
-      for (var i = 0; i <story.length; i++) {
-        htmlString += '<ul class="render-story" style="border: 2px solid green; list-style: none;">';
-        htmlString += '<li>Title: '+ story[i].title +'</li>';
-        htmlString += '<li>Latitude: '+ story[i].origin_latitude +'</li>';
-        htmlString += '<li>Longitude: '+ story[i].origin_longitude +'</li>';
-        htmlString += '<li>Contribution Length: '+ story[i].contribution_limit +'</li>';
-        htmlString += '<li><p class="submit"><input type="submit" value="Contribute"></p></li>';
+      for (var i = 0; i < stories.length; i++) {
+        var story = stories[i];
+        htmlString += '<ul id=' + story.id + ' class="render-story" style="border: 2px solid green; list-style: none;">';
+        htmlString += '<li>Title: '+ story.title +'</li>';
+        // htmlString += '<li>Latitude: '+ story.lat +'</li>'; TEMPORARILY NOT USED?
+        // htmlString += '<li>Longitude: '+ story.lng +'</li>';
+        // htmlString += '<li>Contribution Length: '+ story.contribution_limit +'</li>';
+        htmlString += '<li><p><a href="stories/' + story.id + '"class="submit"><input type="submit" value="View"></a></p></li>';
         htmlString += '</ul>';
       };
 
     htmlString += '</div>';
     return htmlString;
-
 }
 
+function getStory(success, failure){
+  $.ajax({
+    url: 'https://corpsebook-server.herokuapp.com/stories/62',  //window.location.href --> this is the actual URL we need ,
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      success(data)
+    },
+    error: function() {
+      failure()
+    }
+  });
+}
+
+Story.createContribution = function(formData, success, failure){
+  console.log(window.location.href)
+  console.log(formData)
+  $.ajax({
+    url: 'https://corpsebook-server.herokuapp.com/stories/62/contributions',  //window.location.href + '/contributions' --> this is the actual URL we need
+    type: 'POST',
+    dataType: 'json',
+    data: formData,
+    success: function(data) {
+      success(data)
+    },
+    error: function() {
+      failure()
+    }
+  });
+}
