@@ -45,8 +45,18 @@ function createContribution(currentObj) {
 };
 
 function createStory(currentObj) {
+  navigator.geolocation.getCurrentPosition(function (position) {
+      var coords = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }
+      postStory(currentObj, coords)
+  });
+}
+
+function postStory(currentObj, coords) {
   var $this = $(currentObj).serialize()
-  console.log($this)
+  $this += '&story%5Blat%5D=' + coords.lat + '&story%5Blng%5D=' + coords.lng
   $.ajax({
     url: 'https://corpsebook-server.herokuapp.com/stories',
     type: 'POST',
