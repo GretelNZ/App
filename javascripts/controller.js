@@ -2,12 +2,12 @@ $(document).ready(function(){
   homePage();
 
 
-  $('body').on('click', '#incompleted_stories_button', function(){
-    getIncompletedStories();
+  $('body').on('click', '#incomplete_stories_button', function(){
+    getIncompleteStories();
   });
 
-  $('body').on('click', '#completed_stories_button', function(){
-    getCompletedStories();
+  $('body').on('click', '#complete_stories_button', function(){
+    getCompleteStories();
   });
 
   $('body').on('click', '.more_button', function(){
@@ -41,6 +41,5 @@ $(document).ready(function(){
     displayMap();
     getGeocode($(this).serialize());
   });
-
 
 }); // end doc ready
