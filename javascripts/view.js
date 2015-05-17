@@ -25,14 +25,7 @@ function contributePage(story, story_id) {
   var storyHTML = "<div class='story-detail'>";
   storyHTML += "<h3>Title of story: " +story.title+"</h3>";
   storyHTML += storyContributionNull(story);
-  storyHTML += "<form id='contributionForm' enctype='application/json' class='add-contribution-form'>";
-  storyHTML += "<div><label>Username:</label></div>";
-  storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
-  storyHTML += "<div><label>Contribution:</label></div>";
-  storyHTML += "<div><textarea name='contribution[content]' id='contribution' placeholder='Add a line to the story!'></textarea></div>"
-  storyHTML += "<div><button name='btn-submit' >Submit</button></div>"
-  storyHTML += "<input type='hidden' name='story_id' value='"+ story_id +"' />"
-  storyHTML + "</form>";
+  storyHTML += storyCompleted(story, story_id);
   storyHTML += "</div>";
   $("#container").append(storyHTML);
 };

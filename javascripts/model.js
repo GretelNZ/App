@@ -102,9 +102,21 @@ function storyContributionNull(story) {
   }
 }
 
-// function storyCompleted(story) {
-//   if (story.contri)
-// }
+function storyCompleted(story, story_id) {
+  if (story.last_contribution) {
+    var storyHTML = "<form id='contributionForm' enctype='application/json' class='add-contribution-form'>";
+    storyHTML += "<div><label>Username:</label></div>";
+    storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
+    storyHTML += "<div><label>Contribution:</label></div>";
+    storyHTML += "<div><textarea name='contribution[content]' id='contribution' placeholder='Add a line to the story!'></textarea></div>"
+    storyHTML += "<div><button name='btn-submit' >Submit</button></div>"
+    storyHTML += "<input type='hidden' name='story_id' value='"+ story_id +"' />"
+    storyHTML += "</form>";
+    return storyHTML
+  } else if (story.all_contributions) {
+    return 'test'
+  }
+}
 
 
 
