@@ -1,15 +1,4 @@
 var geocoder;
-// var map;
-
-// function initialize() {
-//   geocoder = new google.maps.Geocoder();
-//   var latlng = new google.maps.LatLng(-34.397, 150.644);
-//   var mapOptions = {
-//     zoom: 8,
-//     center: latlng
-//   }
-//   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-// }
 
 function getStoryCoords() {
   if (navigator.geolocation) {
@@ -18,22 +7,6 @@ function getStoryCoords() {
     alert('Sorry, we need your location');
   }
 }
-
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else {
-//     alert('Sorry, we need your location');
-//   }
-// };
-
-// function showPosition(position) {
-//   var coords = {
-//     lat: position.coords.latitude,
-//     lng: position.coords.longitude
-//   }
-//   return coords
-// };
 
 function getLocation () {
   navigator.geolocation.getCurrentPosition(function (position) {
@@ -45,7 +18,6 @@ function getLocation () {
   });
 
 }
-
 
 function formatMap(coords) {
   console.log(coords)
@@ -65,21 +37,3 @@ function getGeocode(address){
     return formatMap(coords);
   })
 }
-
-// function getGeocode(address) {
-//   var address = address.parents('form#searchLocationForm').find('input[name="location"]').val()
-//   geocoder.geocode( { 'address': address}, function(results, status) {
-//     console.log(results);
-//     if (status == google.maps.GeocoderStatus.OK) {
-//       map.setCenter(results[0].geometry.location);
-//       var marker = new google.maps.Marker({
-//           map: map,
-//           position: results[0].geometry.location
-//       });
-//     } else {
-//       alert('There was a problem.')
-//     }
-//   });
-// }
-
-// google.maps.event.addDomListener(window, 'load', initialize);
