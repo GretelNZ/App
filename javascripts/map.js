@@ -34,3 +34,5 @@ function getGeocode(address){
     return formatMap(coords);
   })
 }
+
+
