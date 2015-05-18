@@ -1,69 +1,56 @@
 $(document).ready(function(){
-  Story.getAll();
 
+  var selector = $("body");
+  var appController = new AppController($("#navbar"));
+  var storyController = new StoryController(selector);
+  var contributionController = new ContributionController(selector);
+  var mapController = new MapController(selector);
+  appController.run();
+  storyController.run();
+  contributionController.run();
+  mapController.run();
 
+  // homePage();
 
-// NEW USER
-// ___________________
-  // $('.sign-in-form').on('submit', function(e){
-  //   e.preventDefault();
-  //   var signInInfo = $(e.target).serialize();
-  //   console.log(signInInfo);
-  //   $.ajax({
-  //     url: 'http://corpsebook.herokuapp.com/create',
-  //     type: 'POST',
-  //     data: {signInInfo},
-  //     success: function(result){
-  //       console.log("yes");
-  //       console.log(result);
-  //     },
-  //     error: function(status){
-  //       console.log(status);
-  //     }
-  //   })
+  // $('body').on('click', '#incomplete_stories_button', function(){
+  //   getIncompleteStories();
   // });
 
-// SUBMIT NEW Story
-// ___________________
-  $('.new-story-form').on('submit', function(e){
+  // $('body').on('click', '#complete_stories_button', function(){
+  //   getCompleteStories();
+  // });
 
-    e.preventDefault();
-    var newStory;
-    var story = $(e.target).serialize();
+  // $('body').on('click', '.more_button', function(){
+  //   // getStory($(this).attr("value"));
+  //   getTheRealStory($(this).attr("value"));
+  // });
 
-    var success = function(result){
-      console.log("success");
-      newStory = new Story(result.story);
-    }
-    var failure = function(error){
-      console.log("error", error);
-    }
-    Story.create(story, success, failure);
+  // $('body').on('click', 'button[name="btn-submit"]', function() {
+  //   createContribution(this);
+  // });
 
-    return newStory;
-  });
+  // $('body').on('click', '#new_story_button', function(){
+  //   formNewStory();
+  // });
 
-// SUBMIT NEW Contribution
+  // $('body').on('submit', '.new-story-form', function(e) {
+  //   e.preventDefault()
+  //   createStory($(this))
+  // });
 
-  $('.add-contribution-form').on('submit', function(e){
+  // $('body').on('click', '#nearby_button', function(){
+  //   displayMap();
+  //   getLocation();
+  // });
 
-    e.preventDefault();
-    var newContribution;
-    var contribution = $(e.target).serialize();
+  // $('body').on('click', '#search_button', function(){
+  //   formSearch();
+  // });
 
-    var success = function(result){
-      console.log("success");
-      newContribution = new Contribution(result.contribution);
-      console.log(newContribution);
-    }
+  // $('body').on('submit', '.search-stories-form', function(e) {
+  //   e.preventDefault()
+  //   displayMap();
+  //   getGeocode($(this).serialize());
+  // });
 
-    var failure = function(error){
-      console.log("error", error);
-    }
-
-    Story.createContribution(contribution, success, failure);
-
-    return newContribution;
-  });
-
-});
+}); // end doc ready
