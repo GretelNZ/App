@@ -20,6 +20,17 @@ MapView.prototype = {
     })
   },
 
+  registerMapViewCompleteEventHandler: function(getLocation, formatMap, getNearbyCompleteMap){
+    $('#navbar').on('click', '#complete_stories_map', function(e) {
+      e.preventDefault();
+      getLocation(function(coords) {
+        var map = formatMap(coords);
+        getNearbyCompleteMap(coords, map);
+      })
+
+    })
+  },
+
   formatMap: function(coords) {
     var mapOptions = {
       center: { lat: coords.lat, lng: coords.lng},
