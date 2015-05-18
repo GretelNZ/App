@@ -13,6 +13,7 @@ MapModel.prototype = {
     });
   },
   getNearbyMap: function(coords, map) {
+    var self = this
     $.ajax({
       url: "https://corpsebook-server.herokuapp.com/stories/nearby",
       type: "GET",
@@ -23,19 +24,20 @@ MapModel.prototype = {
       },
       success: function(data) {
         $.each(data, function(index, value){
-          var lat = value.location['lat']
-          var lng = value.location['lng']
-          var myLatlng = new google.maps.LatLng(lat, lng)
-          var title = value.title
-          var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: title,
-            url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
-          });
-          google.maps.event.addListener(marker, 'click', function() {
-            new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
-          });
+          self.mapSuccessLoop(value, map)
+          // var lat = value.location['lat']
+          // var lng = value.location['lng']
+          // var myLatlng = new google.maps.LatLng(lat, lng)
+          // var title = value.title
+          // var marker = new google.maps.Marker({
+          //   position: myLatlng,
+          //   map: map,
+          //   title: title,
+          //   url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
+          // });
+          // google.maps.event.addListener(marker, 'click', function() {
+          //   new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
+          // });
         });
       },
       error: function() {
@@ -45,6 +47,8 @@ MapModel.prototype = {
   },
 
   getNearbyCompleteMap: function(coords, map) {
+    var self = this
+    console.log(self)
     $.ajax({
       url: "https://corpsebook-server.herokuapp.com/stories/nearby",
       type: "GET",
@@ -56,19 +60,20 @@ MapModel.prototype = {
       success: function(data) {
         $.each(data, function(index, value){
           if(value.completed) {
-            var lat = value.location['lat']
-            var lng = value.location['lng']
-            var myLatlng = new google.maps.LatLng(lat, lng)
-            var title = value.title
-            var marker = new google.maps.Marker({
-              position: myLatlng,
-              map: map,
-              title: title,
-              url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-              new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
-            });
+            self.mapSuccessLoop(value, map)
+            // var lat = value.location['lat']
+            // var lng = value.location['lng']
+            // var myLatlng = new google.maps.LatLng(lat, lng)
+            // var title = value.title
+            // var marker = new google.maps.Marker({
+            //   position: myLatlng,
+            //   map: map,
+            //   title: title,
+            //   url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
+            // });
+            // google.maps.event.addListener(marker, 'click', function() {
+            //   new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
+            // });
           }
         });
       },
@@ -76,6 +81,23 @@ MapModel.prototype = {
         alert("Error");
       }
     })
+  },
+
+  mapSuccessLoop: function(value, map) {
+    console.log(value);
+    var lat = value.location['lat']
+    var lng = value.location['lng']
+    var myLatlng = new google.maps.LatLng(lat, lng)
+    var title = value.title
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: title,
+      url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
+    });
   }
 }
 

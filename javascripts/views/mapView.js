@@ -8,24 +8,24 @@ MapView.prototype = {
     $('#container').append('<div id="map-canvas"></div>')
   },
 
-  registerMapViewEventHandler: function(getLocation, formatMap, getNearbyMap) {
+  registerMapViewEventHandler: function(mapModel, formatMap) {
     self = this
     $('#navbar').on('click', '#map_button', function(e) {
       e.preventDefault();
       self.displayMap();
-      getLocation(function(coords){
+      mapModel.getLocation(function(coords){
         var map = formatMap(coords);
-        getNearbyMap(coords, map);
+        mapModel.getNearbyMap(coords, map);
       })
     })
   },
 
-  registerMapViewCompleteEventHandler: function(getLocation, formatMap, getNearbyCompleteMap){
+  registerMapViewCompleteEventHandler: function(formatMap, mapModel){
     $('#navbar').on('click', '#complete_stories_map', function(e) {
       e.preventDefault();
-      getLocation(function(coords) {
+      mapModel.getLocation(function(coords) {
         var map = formatMap(coords);
-        getNearbyCompleteMap(coords, map);
+        mapModel.getNearbyCompleteMap(coords, map);
       })
 
     })
