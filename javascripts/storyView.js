@@ -25,6 +25,13 @@ StoryView.prototype = {
     });
   },
 
+  registerSubmitStoryEventHandler: function(getLocation, postStory){
+    this.selector.on('submit', '.new-story-form', function(e){
+      e.preventDefault();
+      postStory(getLocation, $(this));
+    });
+  },
+
   showStories: function(data){
     $('#container').empty();
     $('#container').append('<ul>');
