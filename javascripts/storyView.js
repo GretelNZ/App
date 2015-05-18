@@ -10,6 +10,21 @@ StoryView.prototype = {
     });
   },
 
+
+  registerCompleteStoriesEventHandler: function(getCompleteStories, showStories) {
+    this.selector.on('click', '#complete_stories_button', function(e){
+      e.preventDefault();
+      getCompleteStories(showStories);
+    });
+  },
+
+  registerCreateStoryFormEventHandler: function(showCreateStoryForm){
+    this.selector.on('click', '#new_story_button', function(e){
+      e.preventDefault();
+      showCreateStoryForm();
+    });
+  },
+
   showStories: function(data){
     $('#container').empty();
     $('#container').append('<ul>');
@@ -25,10 +40,19 @@ StoryView.prototype = {
     $('#container').append('</ul>');
   },
 
-  registerCompleteStoriesEventHandler: function(getCompleteStories, showStories) {
-    this.selector.on('click', '#complete_stories_button', function(e){
-      e.preventDefault();
-      getCompleteStories(showStories);
-    });
+  showCreateStoryForm: function(){
+    var formHTML = '<div class="new-story">'
+      formHTML += '<h1>Create New Story</h1>'
+      formHTML += '<form enctype="application/json" class="new-story-form">'
+      formHTML += '<p><input type="text" name="story[title]" placeholder="Title"></p>'
+      formHTML += '<select name="story[contribution_limit]">'
+      formHTML += '<option value="10">10</option>'
+      formHTML += '<option value="15">15</option>'
+      formHTML += '<option value="20">20</option>'
+      formHTML += '</select>'
+      formHTML += '<p class="submit"><button type="submit" value="Submit" id="btn-create-story">Submit</button></p>'
+      formHTML += '</form></div>';
+
+      $("#container").append(formHTML);
   }
 }
