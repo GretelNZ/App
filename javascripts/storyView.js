@@ -43,6 +43,15 @@ StoryView.prototype = {
     });
   },
 
+  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showStories){
+    $('#navbar').on('click', '#list_button', function(e){
+      e.preventDefault();
+      mapModel.getLocation(function(coords){
+        getIncompleteStories(coords, showStories);
+      })
+    });
+  },
+
   showStories: function(data){
     $('#container').empty();
     // $('#container').append('<ul>');

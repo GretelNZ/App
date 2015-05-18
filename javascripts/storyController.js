@@ -18,6 +18,8 @@ StoryController.prototype = {
     this.view.registerCreateStoryFormEventHandler(this.view.showCreateStoryForm)
     // On click of submit on create a new story
      this.view.registerSubmitStoryEventHandler(this.mapModel, this.model.postStory)
+     // On click of List button
+     this.view.registerListStoryEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
 
 
   }
