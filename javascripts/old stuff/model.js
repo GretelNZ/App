@@ -1,5 +1,6 @@
 var geocoder = new google.maps.Geocoder();
 var map;
+var circle;
 
 function getIncompleteStories() {
   $.ajax({
@@ -85,23 +86,20 @@ function postStory(currentObj, coords) {
 }
 
 function getNearby(map, lat, lng) {
+  var position = { 'search': { 'lat': lat, 'lng': lng } }
+  console.log(position)
+  mapCircle(position)
   $.ajax({
     url: "https://corpsebook-server.herokuapp.com/nearby",
     type: "GET",
-    data: { 'search': {
-      'lat': lat,
-      'lng': lng
-      }
-    },
+    data: position,
     success: function(data) {
-      console.log(data)
       $.each(data, function(index, value){
-      var lat = value.lat
-      var lng = value.lng
-      var myLatlng = new google.maps.LatLng(lat, lng)
-      var title = value.title
-      console.log(value.id)
-      var marker = new google.maps.Marker({
+        var lat = value.lat
+        var lng = value.lng
+        var myLatlng = new google.maps.LatLng(lat, lng)
+        var title = value.title
+        var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
         title: title,
@@ -225,7 +223,19 @@ function completeStory(stories) {
   return fullStoryHTML
 }
 
-
+function mapCircle(coords) {
+  var circleOptions = {
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: new google.maps.LatLng(coords.search['lat'],  coords.search['lng']),
+      radius: 5000
+    };
+    circle = new google.maps.Circle(circleOptions);
+  }
 
 
 
