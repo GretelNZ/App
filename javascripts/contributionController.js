@@ -6,5 +6,6 @@ function ContributionController(selector){
 ContributionController.prototype  = {
     run: function(){
       //call all the things
+      this.view.registerContributionEventHandler(this.model.addContribution);
     }
 }

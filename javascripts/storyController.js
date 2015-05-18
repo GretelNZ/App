@@ -13,14 +13,13 @@ StoryController.prototype = {
     // On click of Complete Stories Button
     this.view.registerCompleteStoriesEventHandler(this.model.getCompleteStories, this.view.showStories)
     // On click of see more button on a story
-    // this.view.registerStoryInfoEventHandler(this.model.getStoryInfo, this.view)
+    this.view.registerStoryInfoEventHandler(this.mapModel, this.model.getStoryInfo, this.model.inRange, this.view.showIncompleteStory)
     // On click of New Story button
     this.view.registerCreateStoryFormEventHandler(this.view.showCreateStoryForm)
     // On click of submit on create a new story
      this.view.registerSubmitStoryEventHandler(this.mapModel, this.model.postStory)
      // On click of List button
      this.view.registerListStoryEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
-
 
   }
 }

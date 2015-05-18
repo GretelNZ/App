@@ -52,5 +52,33 @@ StoryModel.prototype = {
         alert('Error')
       }
     });
+  },
+
+  inRange: function(coords, id){
+    return $.ajax({
+      url: 'https://corpsebook-server.herokuapp.com/stories/'+id+'/in_range',
+      type: 'GET',
+      data: {search: {lat: coords.lat, lng: coords.lng}},
+      success: function(data){
+        return true
+      },
+      error: function(response){
+        console.log(response);
+      }
+    })
+  },
+
+  getStoryInfo: function(showIncompleteStory, id){
+    $.ajax({
+      url: "https://corpsebook-server.herokuapp.com/stories/" + id,
+      type: "GET",
+      success: function(data) {
+        showIncompleteStory(data)
+      },
+      error: function() {
+        console.log("Error");
+      }
+    })
   }
+
 }
