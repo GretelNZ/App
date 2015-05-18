@@ -31,6 +31,16 @@ MapView.prototype = {
     })
   },
 
+  registerMapViewIncompleteEventHandler: function(formatMap, mapModel){
+    $('#navbar').on('click', '#incomplete_stories_map', function(e){
+      e.preventDefault();
+      mapModel.getLocation(function(coords) {
+        var map = formatMap(coords);
+        mapModel.getNearbyMap(coords, map);
+      })
+    })
+  },
+
   formatMap: function(coords) {
     var mapOptions = {
       center: { lat: coords.lat, lng: coords.lng},
