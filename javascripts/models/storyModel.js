@@ -12,6 +12,7 @@ StoryModel.prototype = {
                   }
     $.ajax({
       url: 'https://corpsebook-server.herokuapp.com/nearby',
+      async: false, // Quick fix, maybe find another way
       type: 'GET',
       data: search,
       success: function(data){
