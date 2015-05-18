@@ -9,13 +9,13 @@ function getStoryCoords() {
 }
 
 
-function getLocation () {
+function getLocation (callback) {
   navigator.geolocation.getCurrentPosition(function (position) {
       var coords = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
-      formatMap(coords);
+      callback(coords)// formatMap(coords);
   });
 }
 

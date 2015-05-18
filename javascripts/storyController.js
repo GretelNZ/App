@@ -6,6 +6,7 @@ function StoryController(selector){
 
 StoryController.prototype = {
   run: function(){
+    // this.mapModel.getLocation(function(coords){console.log(coords)})
     // On click of Incomplete Stories Button
     this.view.registerIncompleteStoriesEventHandler(this.model.getIncompleteStories, this.view.showStories)
     // On click of Complete Stories Button
@@ -15,8 +16,7 @@ StoryController.prototype = {
     // On click of New Story button
     this.view.registerCreateStoryFormEventHandler(this.view.showCreateStoryForm)
     // On click of submit on create a new story
-    this.mapModel.getLocation()
-     this.view.registerSubmitStoryEventHandler(this.mapModel.getLocation, this.model.postStory)
+     this.view.registerSubmitStoryEventHandler(this.mapModel, this.model.postStory)
 
 
   }

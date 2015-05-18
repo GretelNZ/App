@@ -25,10 +25,14 @@ StoryView.prototype = {
     });
   },
 
-  registerSubmitStoryEventHandler: function(getLocation, postStory){
+  registerSubmitStoryEventHandler: function(mapModel, postStory){
     this.selector.on('submit', '.new-story-form', function(e){
       e.preventDefault();
-      postStory(getLocation, $(this));
+      var data = $(this);
+      mapModel.getLocation(function(coords){
+        console.log("1", coords)
+        postStory(coords, data);
+      })
     });
   },
 
