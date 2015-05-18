@@ -70,7 +70,7 @@ StoryView.prototype = {
       formHTML += '</select>'
       formHTML += '<p class="submit"><button type="submit" value="Submit" id="btn-create-story">Submit</button></p>'
       formHTML += '</form></div>';
-
+      $("#container").empty();
       $("#container").append(formHTML);
   }
 }

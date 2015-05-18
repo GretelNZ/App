@@ -183,6 +183,7 @@ function theRealStoryViewLogic(story, story_id, bool) {
   }
 }
 
+
 function storyViewLogic(story, story_id) {
   if (story.last_contribution != null) {
     var incompleteStoryHTML = lastContribution(story);

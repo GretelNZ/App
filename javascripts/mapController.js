@@ -6,6 +6,6 @@ function MapController(selector){
 
 MapController.prototype = {
   run: function(){
-    // this.view.
+    this.view.registerMapViewEventHandler(this.model.getLocation, this.view.formatMap, this.model.getNearbyMap)
   }
 }
