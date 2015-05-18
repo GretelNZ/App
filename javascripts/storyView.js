@@ -30,7 +30,6 @@ StoryView.prototype = {
       e.preventDefault();
       var data = $(this);
       mapModel.getLocation(function(coords){
-        console.log("1", coords)
         postStory(coords, data);
       })
     });

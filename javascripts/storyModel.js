@@ -30,21 +30,19 @@ StoryModel.prototype = {
   },
 
   postStory: function(coords, data){
-    // var coords = getLocation();
-    console.log("3", data)
-    // var story = storyForm.serialize();
-    // story += '&story%5Blat%5D=' + coords.lat + '&story%5Blng%5D=' + coords.lng
-    // $.ajax({
-    //   url: 'https://corpsebook-server.herokuapp.com/stories',
-    //   type: 'POST',
-    //   dataType: 'json',
-    //   data: story,
-    //   success: function(data) {
-    //     console.log(data)
-    //   },
-    //   error: function() {
-    //     alert('Error')
-    //   }
-    // });
+    var story = data.serialize();
+    story += '&story%5Blat%5D=' + coords.lat + '&story%5Blng%5D=' + coords.lng
+    $.ajax({
+      url: 'https://corpsebook-server.herokuapp.com/stories',
+      type: 'POST',
+      dataType: 'json',
+      data: story,
+      success: function(data) {
+        console.log(data)
+      },
+      error: function() {
+        alert('Error')
+      }
+    });
   }
 }
