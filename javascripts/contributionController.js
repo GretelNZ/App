@@ -5,6 +5,6 @@ function ContributionController(selector){
 
 ContributionController.prototype  = {
     run: function(){
-      //call all the thing
+      //call all the things
     }
 }

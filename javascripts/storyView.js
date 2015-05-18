@@ -3,10 +3,18 @@ function StoryView(selector){
 }
 
 StoryView.prototype = {
-  registerIncompleteStoriesEventHandler: function(getIncompleteStories, showStories){
+  loadDefaultView: function(mapModel, getIncompleteStories, showStories){
+    mapModel.getLocation(function(coords){
+      getIncompleteStories(coords, showStories);
+    })
+  },
+
+  registerIncompleteStoriesEventHandler: function(mapModel, getIncompleteStories, showStories){
     this.selector.on('click', '#incomplete_stories_button', function(e){
       e.preventDefault();
-      getIncompleteStories(showStories)
+      mapModel.getLocation(function(coords){
+        getIncompleteStories(coords, showStories);
+      })
     });
   },
 
@@ -37,7 +45,7 @@ StoryView.prototype = {
 
   showStories: function(data){
     $('#container').empty();
-    $('#container').append('<ul>');
+    // $('#container').append('<ul>');
     $.each(data, function(i, story){
       var storyHTML = '<div id="story_' + story.id + '">';
       storyHTML += '<li>';
@@ -45,9 +53,9 @@ StoryView.prototype = {
       storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
       storyHTML += '</li>';
       storyHTML += '</div>';
-      $('#container').append(storyHTML);
+      $('#container').prepend(storyHTML);
     });
-    $('#container').append('</ul>');
+    // $('#container').append('</ul>');
   },
 
   showCreateStoryForm: function(){

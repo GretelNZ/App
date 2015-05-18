@@ -7,5 +7,7 @@ function AppController(selector){
 AppController.prototype = {
   run: function(){
     this.view.loadNavBar();
+    this.view.loadMapNavBar();
+    this.view.loadListNavBar();
   }
 }

@@ -6,9 +6,10 @@ function StoryController(selector){
 
 StoryController.prototype = {
   run: function(){
+    this.view.loadDefaultView(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
     // this.mapModel.getLocation(function(coords){console.log(coords)})
     // On click of Incomplete Stories Button
-    this.view.registerIncompleteStoriesEventHandler(this.model.getIncompleteStories, this.view.showStories)
+    this.view.registerIncompleteStoriesEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
     // On click of Complete Stories Button
     this.view.registerCompleteStoriesEventHandler(this.model.getCompleteStories, this.view.showStories)
     // On click of see more button on a story

@@ -3,10 +3,17 @@ function StoryModel(){
 }
 
 StoryModel.prototype = {
-  getIncompleteStories: function(showStories){
+  getIncompleteStories: function(coords, showStories){
+    var search = {search:
+                    {
+                      lat: coords.lat,
+                      lng: coords.lng
+                    }
+                  }
     $.ajax({
-      url: 'https://corpsebook-server.herokuapp.com/stories',
+      url: 'https://corpsebook-server.herokuapp.com/nearby',
       type: 'GET',
+      data: search,
       success: function(data){
         showStories(data);
       },
@@ -38,7 +45,8 @@ StoryModel.prototype = {
       dataType: 'json',
       data: story,
       success: function(data) {
-        console.log(data)
+        console.log(data);
+        location.reload();
       },
       error: function() {
         alert('Error')
