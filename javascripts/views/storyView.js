@@ -19,10 +19,12 @@ StoryView.prototype = {
   },
 
 
-  registerCompleteStoriesEventHandler: function(getCompleteStories, showStories) {
+  registerCompleteStoriesEventHandler: function(mapModel, getCompleteStories, showCompleteStories) {
     this.selector.on('click', '#complete_stories_button', function(e){
       e.preventDefault();
-      getCompleteStories(showStories);
+      mapModel.getLocation(function(coords){
+        getCompleteStories(coords, showCompleteStories);
+      })
     });
   },
 
@@ -43,11 +45,11 @@ StoryView.prototype = {
     });
   },
 
-  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showStories){
+  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showIncompleteStories){
     $('#navbar').on('click', '#list_button', function(e){
       e.preventDefault();
       mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showStories);
+        getIncompleteStories(coords, showIncompleteStories);
       })
     });
   },
@@ -68,19 +70,42 @@ StoryView.prototype = {
     });
   },
 
-  showStories: function(data){
+  showIncompleteStories: function(data){
     $('#container').empty();
     // $('#container').append('<ul>');
     $.each(data, function(i, story){
+      if(!story.completed){
       var storyHTML = '<div id="story_' + story.id + '">';
       storyHTML += '<li>';
       storyHTML += '<h2>' + story.title + '</h2>';
+        if(story.contribution_length > 0 ){
+          storyHTML += '<p>'+story.last_contribution['content']+'</p>'
+        }else{
+          storyHTML += '<p>This story has no contributions.</p>'
+        }
       storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
       storyHTML += '</li>';
       storyHTML += '</div>';
       $('#container').prepend(storyHTML);
+      }
     });
     // $('#container').append('</ul>');
+  },
+
+  showCompleteStories: function(data){
+    $('#container').empty();
+    $.each(data, function(i, story){
+      if(story.completed){
+      var storyHTML = '<div id="story_' + story.id + '">';
+      storyHTML += '<li>';
+      storyHTML += '<h2>' + story.title + '</h2>';
+      storyHTML += '<p>'+story.first_contribution['content']+'</p>'
+      storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
+      storyHTML += '</li>';
+      storyHTML += '</div>';
+      $('#container').prepend(storyHTML);
+      }
+    });
   },
 
   showCreateStoryForm: function(){
@@ -105,7 +130,7 @@ StoryView.prototype = {
       $('#container').empty();
       var storyHTML = "<div class='story-detail'>";
       storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-      if(story.contributions_length > 0){
+      if(story.contribution_length > 0){
         storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution['content'] + ' - ' + story.last_contribution['username'] + "</p>";
         console.log(story.last_contribution)
       }else{

@@ -14,7 +14,7 @@ MapModel.prototype = {
   },
   getNearbyMap: function(coords, map) {
     $.ajax({
-      url: "https://corpsebook-server.herokuapp.com/nearby",
+      url: "https://corpsebook-server.herokuapp.com/stories/nearby",
       type: "GET",
       data: { 'search': {
         'lat': coords.lat,
@@ -23,8 +23,8 @@ MapModel.prototype = {
       },
       success: function(data) {
         $.each(data, function(index, value){
-          var lat = value.lat
-          var lng = value.lng
+          var lat = value.location['lat']
+          var lng = value.location['lng']
           var myLatlng = new google.maps.LatLng(lat, lng)
           var title = value.title
           var marker = new google.maps.Marker({

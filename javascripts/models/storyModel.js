@@ -3,7 +3,7 @@ function StoryModel(){
 }
 
 StoryModel.prototype = {
-  getIncompleteStories: function(coords, showStories){
+  getIncompleteStories: function(coords, showIncompleteStories){
     var search = {search:
                     {
                       lat: coords.lat,
@@ -11,12 +11,12 @@ StoryModel.prototype = {
                     }
                   }
     $.ajax({
-      url: 'https://corpsebook-server.herokuapp.com/nearby',
+      url: 'https://corpsebook-server.herokuapp.com/stories/nearby',
       async: false, // Quick fix, maybe find another way
       type: 'GET',
       data: search,
       success: function(data){
-        showStories(data);
+        showIncompleteStories(data);
       },
       error: function(status, error){
         alert('Error')
@@ -24,12 +24,19 @@ StoryModel.prototype = {
     });
   },
 
-  getCompleteStories: function(showStories){
+  getCompleteStories: function(coords, showCompleteStories){
+    var search = {search:
+                    {
+                      lat: coords.lat,
+                      lng: coords.lng
+                    }
+                  }
     $.ajax({
-      url: 'https://corpsebook-server.herokuapp.com/completed',
+      url: 'https://corpsebook-server.herokuapp.com/stories/nearby',
       type: 'GET',
+      data: search,
       success: function(data){
-        showStories(data);
+        showCompleteStories(data)
       },
       error: function(status, error){
         alert('Error')

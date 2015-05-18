@@ -6,12 +6,12 @@ function StoryController(selector){
 
 StoryController.prototype = {
   run: function(){
-    this.view.loadDefaultView(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
+    this.view.loadDefaultView(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories)
     // this.mapModel.getLocation(function(coords){console.log(coords)})
     // On click of Incomplete Stories Button
-    this.view.registerIncompleteStoriesEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
+    this.view.registerIncompleteStoriesEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories)
     // On click of Complete Stories Button
-    this.view.registerCompleteStoriesEventHandler(this.model.getCompleteStories, this.view.showStories)
+    this.view.registerCompleteStoriesEventHandler(this.mapModel, this.model.getCompleteStories, this.view.showCompleteStories)
     // On click of see more button on a story
     this.view.registerStoryInfoEventHandler(this.mapModel, this.model.getStoryInfo, this.model.inRange, this.view.showIncompleteStory)
     // On click of New Story button
@@ -19,7 +19,7 @@ StoryController.prototype = {
     // On click of submit on create a new story
      this.view.registerSubmitStoryEventHandler(this.mapModel, this.model.postStory)
      // On click of List button
-     this.view.registerListStoryEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showStories)
+     this.view.registerListStoryEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories)
 
   }
 }
