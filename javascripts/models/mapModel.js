@@ -25,19 +25,6 @@ MapModel.prototype = {
       success: function(data) {
         $.each(data, function(index, value){
           self.mapSuccessLoop(value, map)
-          // var lat = value.location['lat']
-          // var lng = value.location['lng']
-          // var myLatlng = new google.maps.LatLng(lat, lng)
-          // var title = value.title
-          // var marker = new google.maps.Marker({
-          //   position: myLatlng,
-          //   map: map,
-          //   title: title,
-          //   url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
-          // });
-          // google.maps.event.addListener(marker, 'click', function() {
-          //   new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
-          // });
         });
       },
       error: function() {
@@ -61,19 +48,6 @@ MapModel.prototype = {
         $.each(data, function(index, value){
           if(value.completed) {
             self.mapSuccessLoop(value, map)
-            // var lat = value.location['lat']
-            // var lng = value.location['lng']
-            // var myLatlng = new google.maps.LatLng(lat, lng)
-            // var title = value.title
-            // var marker = new google.maps.Marker({
-            //   position: myLatlng,
-            //   map: map,
-            //   title: title,
-            //   url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
-            // });
-            // google.maps.event.addListener(marker, 'click', function() {
-            //   new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
-            // });
           }
         });
       },
@@ -84,7 +58,6 @@ MapModel.prototype = {
   },
 
   mapSuccessLoop: function(value, map) {
-    console.log(value);
     var lat = value.location['lat']
     var lng = value.location['lng']
     var myLatlng = new google.maps.LatLng(lat, lng)
@@ -96,7 +69,7 @@ MapModel.prototype = {
       url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
     });
     google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id) //HACK JOB PLEASE FIX
+      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id) //HACK JOB PLEASE FIX
     });
   }
 }
