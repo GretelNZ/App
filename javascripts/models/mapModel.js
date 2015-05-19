@@ -88,7 +88,6 @@ MapModel.prototype = {
     var latlng = new google.maps.LatLng(lat, lng);
     this.geocoder.geocode({'latLng': latlng}, function(results, status) {
         if(status == google.maps.GeocoderStatus.OK) {
-          console.log(results)
             if(results[0]) {
                 callback(results[0].address_components[1].long_name);
             } else {
