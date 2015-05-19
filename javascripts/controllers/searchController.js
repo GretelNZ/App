@@ -2,9 +2,9 @@ function SearchController(selector){
   this.model = new SearchModel();
   this.view = new SearchView(selector);
   this.mapModel = new MapModel();
+  this.mapView = new MapView()
   this.storyModel = new StoryModel();
   this.storyView = new StoryView()
-  this.mapView = new MapView()
 }
 
 SearchController.prototype = {
@@ -14,11 +14,6 @@ SearchController.prototype = {
 
     //on submit of search by location form
     this.view.registerSubmitSearchEventHandler(this.model.getGeocode, this.mapView, this.mapModel)
-
-    //on
-
-    // On click of See more button on a Complete story
-    // this.storyView.registerCompleteStoryInfoEventHandler(this.mapModel, this.storyModel.getCompleteStoryInfo, this.storyView.showCompleteStory)
 
   }
 }
