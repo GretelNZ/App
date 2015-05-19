@@ -15,11 +15,11 @@ SearchController.prototype = {
     //on submit of search by location form
     this.view.registerSubmitSearchEventHandler(this.model.getGeocode, this.mapView, this.mapModel)
 
+    //on
+
+    // On click of See more button on a Complete story
+    // this.storyView.registerCompleteStoryInfoEventHandler(this.mapModel, this.storyModel.getCompleteStoryInfo, this.storyView.showCompleteStory)
 
   }
 }
 
-// on submit of 'search by location' form
-// get geocode of location
-// format map with coords
-// get nearby complete stories map based on coords and formatted map
