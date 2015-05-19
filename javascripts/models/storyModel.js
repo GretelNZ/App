@@ -52,14 +52,21 @@ StoryModel.prototype = {
     });
   },
 
-  getGlobalCompleteStories: function(showStoriesWithSearchField){
+  getGlobalCompleteStories: function(showCompleteStories, mapModel){
 
     $.ajax({
       url: 'https://corpsebook-server.herokuapp.com/stories/completed',
       type: 'GET',
       success: function(data){
-        showStoriesWithSearchField(data)
+        $('#container').empty();
+        $.each(data, function(index, story){
+          mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showCompleteStories(story, address)
+          })
+        })
       },
+      // success: function(data){
+      //   showCompleteStories(data)
+      // },
       error: function(status, error){
         alert('Error')
       }

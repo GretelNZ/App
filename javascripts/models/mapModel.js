@@ -67,20 +67,20 @@ MapModel.prototype = {
     var marker = new google.maps.Marker({
       position: myLatlng,
       map: map,
-      title: title,
-      url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
+      title: title
+      // url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
     });
     return marker
   },
   completeStoryMapMarkerListener: function(marker, value) {
       google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id)
+      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, new MapModel(),  value.id)
     });
   },
 
   incompleteStoryMapMarkerListener: function(marker, value) {
       google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id)
+      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id, new MapModel())
     });
   },
 

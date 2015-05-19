@@ -49,7 +49,7 @@ StoryView.prototype = {
     $('#navbar').on('click', '#list_button', function(e){
       e.preventDefault();
       mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showIncompleteStories);
+        getIncompleteStories(coords, showIncompleteStories, mapModel);
       })
     });
   },
@@ -74,8 +74,9 @@ StoryView.prototype = {
     this.selector.on('click', '.full_story_button', function(e) {
       e.preventDefault();
       var id = $(this).attr("value");
+      console.log(id);
       mapModel.getLocation(function(coords) {
-        getCompleteStoryInfo(mapModel, showCompleteStory, id);
+        getCompleteStoryInfo(showCompleteStory, mapModel, id);
       })
     })
   },

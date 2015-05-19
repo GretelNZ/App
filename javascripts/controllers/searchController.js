@@ -10,7 +10,7 @@ function SearchController(selector){
 SearchController.prototype = {
   run: function(){
     // On click of Search By Location Button
-    this.view.registerCompleteStoriesEventHandler(this.storyModel.getGlobalCompleteStories, this.view.showStoriesWithSearchField)
+    this.view.registerCompleteStoriesEventHandler(this.storyModel.getGlobalCompleteStories, this.view.showCompleteStories, this.mapModel)
 
     //on submit of search by location form
     this.view.registerSubmitSearchEventHandler(this.model.getGeocode, this.mapView, this.mapModel)
