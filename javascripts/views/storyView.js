@@ -82,22 +82,20 @@ StoryView.prototype = {
   },
 
   showIncompleteStories: function(story, address){
+    $('.post-wrapper').attr('id', 'origin');
     if(!story.completed){
-      console.log(story.title)
+      console.log(story)
       $('.post-wrapper').append('<div id=story_' + story.id + '></div>')
       current_story = '#story_' + story.id
-      $('.main-story').clone().appendTo(current_story)
+      $('#origin .main-story').first().clone().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
       $(current_story + ' .pull-right').append(address);
+
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.last_contribution['content'])
       }else{
-        $(current_story + ' .desc').append('<p>This story has no contributions.</p>')
+        $(current_story + ' .desc').append(' ')
       }
-
-      // storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
-      // storyHTML += '</li>';
-      // storyHTML += '</div>';
     }
   },
 
