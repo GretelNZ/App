@@ -41,13 +41,6 @@ MapView.prototype = {
     })
   },
 
-  registerMapMarkerEventHandler: function() {
-    google.maps.event.addListener(marker, 'click', function() {
-      console.log(marker)
-    // new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id) //HACK JOB PLEASE FIX
-    });
-  },
-
   formatMap: function(coords) {
     var mapOptions = {
       center: { lat: coords.lat, lng: coords.lng},

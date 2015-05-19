@@ -24,7 +24,8 @@ MapModel.prototype = {
       },
       success: function(data) {
         $.each(data, function(index, value){
-          self.mapSuccessLoop(value, map)
+          var marker = self.mapSuccessLoop(value, map)
+          self.incompleteStoryMapMarkerListener(marker, value)
         });
       },
       error: function() {
@@ -46,7 +47,8 @@ MapModel.prototype = {
       success: function(data) {
         $.each(data, function(index, value){
           if(value.completed) {
-            self.mapSuccessLoop(value, map)
+            var marker = self.mapSuccessLoop(value, map)
+            self.completeStoryMapMarkerListener(marker, value)
           }
         });
       },
@@ -67,9 +69,18 @@ MapModel.prototype = {
       title: title,
       url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
     });
-    // google.maps.event.addListener(marker, 'click', function() {
-    //   new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id) //HACK JOB PLEASE FIX
-    // });
+    return marker
+  },
+  completeStoryMapMarkerListener: function(marker, value) {
+      google.maps.event.addListener(marker, 'click', function() {
+      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id)
+    });
+  },
+
+  incompleteStoryMapMarkerListener: function(marker, value) {
+      google.maps.event.addListener(marker, 'click', function() {
+      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id)
+    });
   }
 }
 
