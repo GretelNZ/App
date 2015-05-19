@@ -44,17 +44,11 @@ StoryModel.prototype = {
     });
   },
 
-  getGlobalCompleteStories: function(coords, showStoriesWithSearchField){
-    var search = {search:
-                    {
-                      lat: coords.lat,
-                      lng: coords.lng
-                    }
-                  }
+  getGlobalCompleteStories: function(showStoriesWithSearchField){
+
     $.ajax({
       url: 'https://corpsebook-server.herokuapp.com/stories/completed',
       type: 'GET',
-      data: search,
       success: function(data){
         showStoriesWithSearchField(data)
       },
