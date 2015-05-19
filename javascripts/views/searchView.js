@@ -3,10 +3,10 @@ function SearchView(selector){
 }
 
 SearchView.prototype = {
-  registerCompleteStoriesEventHandler: function(getCompleteStories, showStories) {
+  registerCompleteStoriesEventHandler: function(getGlobalCompleteStories, showStories) {
     this.selector.on('click', '#search_by_location_button', function(e){
       e.preventDefault();
-      getCompleteStories(showStories);
+      getGlobalCompleteStories(showStories);
     });
   },
 

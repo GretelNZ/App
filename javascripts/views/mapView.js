@@ -8,16 +8,44 @@ MapView.prototype = {
     $('#container').append('<div id="map-canvas"></div>')
   },
 
-  registerMapViewEventHandler: function(getLocation, formatMap, getNearbyMap) {
+  registerMapViewEventHandler: function(mapModel, formatMap) {
     self = this
     $('#navbar').on('click', '#map_button', function(e) {
       e.preventDefault();
       self.displayMap();
-      getLocation(function(coords){
+      mapModel.getLocation(function(coords){
         var map = formatMap(coords);
-        getNearbyMap(coords, map);
+        mapModel.getNearbyMap(coords, map);
       })
     })
+  },
+
+  registerMapViewCompleteEventHandler: function(formatMap, mapModel){
+    $('#navbar').on('click', '#complete_stories_map', function(e) {
+      e.preventDefault();
+      mapModel.getLocation(function(coords) {
+        var map = formatMap(coords);
+        mapModel.getNearbyCompleteMap(coords, map);
+      })
+
+    })
+  },
+
+  registerMapViewIncompleteEventHandler: function(formatMap, mapModel){
+    $('#navbar').on('click', '#incomplete_stories_map', function(e){
+      e.preventDefault();
+      mapModel.getLocation(function(coords) {
+        var map = formatMap(coords);
+        mapModel.getNearbyMap(coords, map);
+      })
+    })
+  },
+
+  registerMapMarkerEventHandler: function() {
+    google.maps.event.addListener(marker, 'click', function() {
+      console.log(marker)
+    // new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id) //HACK JOB PLEASE FIX
+    });
   },
 
   formatMap: function(coords) {
@@ -27,6 +55,6 @@ MapView.prototype = {
     };
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     return map
-    }
+  }
 
 }
