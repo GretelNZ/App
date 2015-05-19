@@ -35,7 +35,6 @@ MapModel.prototype = {
 
   getNearbyCompleteMap: function(coords, map) {
     var self = this
-    console.log(self)
     $.ajax({
       url: "https://corpsebook-server.herokuapp.com/stories/nearby",
       type: "GET",
@@ -68,9 +67,9 @@ MapModel.prototype = {
       title: title,
       url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
     });
-    google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id) //HACK JOB PLEASE FIX
-    });
+    // google.maps.event.addListener(marker, 'click', function() {
+    //   new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id) //HACK JOB PLEASE FIX
+    // });
   }
 }
 
