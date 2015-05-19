@@ -4,6 +4,7 @@ function StoryView(selector){
 
 StoryView.prototype = {
   loadDefaultView: function(mapModel, getIncompleteStories, showStories){
+    $( "#container" ).load( "stories.html" );
     mapModel.getLocation(function(coords){
       getIncompleteStories(coords, showStories, mapModel);
     })
@@ -82,19 +83,21 @@ StoryView.prototype = {
 
   showIncompleteStories: function(story, address){
     if(!story.completed){
-    var storyHTML = '<div id="story_' + story.id + '">';
-    storyHTML += '<li>';
-    storyHTML += '<h2>' + story.title + '</h2>';
-    storyHTML +=  '<h3>'+ address + '</h3>'
+      console.log(story.title)
+      $('.post-wrapper').append('<div id=story_' + story.id + '></div>')
+      current_story = '#story_' + story.id
+      $('.main-story').clone().appendTo(current_story)
+      $(current_story + ' .pull-left').append(story.title);
+      $(current_story + ' .pull-right').append(address);
       if(story.contribution_length > 0 ){
-        storyHTML += '<p>'+story.last_contribution['content']+'</p>'
+        $(current_story + ' .desc').append(story.last_contribution['content'])
       }else{
-        storyHTML += '<p>This story has no contributions.</p>'
+        $(current_story + ' .desc').append('<p>This story has no contributions.</p>')
       }
-    storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
-    storyHTML += '</li>';
-    storyHTML += '</div>';
-    $('#container').prepend(storyHTML);
+
+      // storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
+      // storyHTML += '</li>';
+      // storyHTML += '</div>';
     }
   },
 

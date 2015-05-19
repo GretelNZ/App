@@ -1,0 +1,95 @@
+.search-container {
+  width: 46%;
+  padding-top: 0px;
+  background: #ccc;
+  border-radius: 10px;
+  margin-top: 5px;
+  height: 38px;
+}
+#centered-menu .search-container input#search {
+  width: 85%;
+  background-color: #ccc;
+  border-radius: 10px;
+  border: none;
+  padding: 9px 0 5px 10px;
+}
+#centered-menu .search-container input#search_submit {
+  border: none;
+  background-color: #ccc;
+  /*background-color: #fff;*/
+  background-image: url("../images/search.png");
+  padding: 8px;
+  height: 36px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 65%;
+}
+
+#centered-menu .search-container input#search:focus {
+  border-radius: 9px 0 0 9px;
+  background: #DDD;
+  color: #222;
+  outline: 0;
+  padding: 9px 0 5px 10px;
+}
+
+@media only screen and (max-width: 1170px) {
+  .search-container {
+    width: 97%;
+    margin: 2px 15px;
+  }
+  #centered-menu .search-container input#search_submit {
+    background-size: 60%;
+  }
+}
+
+@media only screen and (max-width: 610px) {
+  .search-container {
+    width: 98%;
+    margin: 2px 5px;
+  }
+  #centered-menu .search-container input#search {
+    width: 80%;
+  }
+  #centered-menu .search-container input#search_submit {
+    background-size: 80%;
+  }
+}
+@media only screen and (max-width: 495px) {
+  #centered-menu .search-container input#search_submit {
+    height: 34px;
+  }
+}
+@media only screen and (max-width: 445px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 9px;
+    height: 33px;
+  }
+  #centered-menu .search-container input#search:focus {
+    padding: 9px 0 8px 10px;
+  }
+}
+
+@media only screen and (max-width: 424px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 10px;
+  }
+  #centered-menu .search-container input#search:focus {
+    padding: 9px 0 9px 10px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 11px;
+  }
+  #centered-menu .search-container input#search:focus {
+    padding: 10px 5px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 12px;
+  }
+}

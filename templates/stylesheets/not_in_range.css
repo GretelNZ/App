@@ -1,0 +1,59 @@
+.err {
+  background-color: #E4E2E2;
+  border-radius: 3px;
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+  margin-top: 10px;
+}
+
+
+.err-title h2 {
+  color: #428bca;
+  font-weight: 400;
+  text-align: center;
+  border-top: 2px solid #fff;
+  padding: 10px 5px 5px;
+}
+
+.err-content {
+  background-color: #fff;
+  margin: 10px auto;
+  padding: 5px;
+}
+
+.err-content section {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.err-btn {
+  text-align: center;
+  border-bottom: 2px solid #fff;
+  margin: 5px auto;
+  padding: 5px 5px 10px 5px;
+}
+
+.emotion img {
+	width: 50%;
+}
+
+.err-btn button {
+	width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+	.err {
+		width: 70%;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.err {
+		width: 85%;
+	}
+	.err-btn button {
+		font-size: 13px;
+		padding: 10px;
+		height: 40px;
+	}
+}
