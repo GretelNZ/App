@@ -22,7 +22,7 @@ MapView.prototype = {
 
   formatMap: function(coords) {
     var mapOptions = {
-      center: { lat: coords.lat, lng: coords.lng},
+      center: new google.maps.LatLng(coords.lat, coords.lng),
       zoom: 13
     };
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
