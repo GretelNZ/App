@@ -1,6 +1,0 @@
-function ContributionModel(){
-}
-
-ContributionModel.prototype = {
-
-}
