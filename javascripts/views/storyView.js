@@ -61,7 +61,7 @@ StoryView.prototype = {
       mapModel.getLocation(function(coords){
         inRange(coords, id).done(function(result){
           if(result){
-            getStoryInfo(showIncompleteStory, id);
+            getStoryInfo(showIncompleteStory, id, mapModel);
           }else{
             console.log("You are not in range of the story. Walk faster.")
           }
@@ -134,12 +134,13 @@ StoryView.prototype = {
       $("#container").append(formHTML);
   },
 
-  showIncompleteStory: function(story){
+  showIncompleteStory: function(story, address){
     var self = this;
     if(!story.completed){
       $('#container').empty();
       var storyHTML = "<div class='story-detail'>";
       storyHTML += "<h3>Title of story: " +story.title+"</h3>";
+      storyHTML += "<h3>Location: " +address+"</h3>";
       if(story.contribution_length > 0){
         storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution['content'] + ' - ' + story.last_contribution['username'] + "</p>";
         console.log(story.last_contribution)

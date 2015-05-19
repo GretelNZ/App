@@ -76,12 +76,13 @@ StoryModel.prototype = {
     })
   },
 
-  getStoryInfo: function(showIncompleteStory, id){
+  getStoryInfo: function(showIncompleteStory, id, mapModel){
     $.ajax({
       url: "https://corpsebook-server.herokuapp.com/stories/" + id,
       type: "GET",
       success: function(data) {
-        showIncompleteStory(data)
+        mapModel.reverseGeocode(data.location['lat'], data.location['lng'], function(address) {showIncompleteStory(data, address)
+        })
       },
       error: function() {
         console.log("Error");
