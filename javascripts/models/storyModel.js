@@ -17,11 +17,21 @@ StoryModel.prototype = {
       data: search,
       success: function(data){
         $('#container').empty();
+        data.reverse();
         $.each(data, function(index, story){
           // bach data in chunks of 5
             var callback = function(address) { showIncompleteStories(story, address) };
             mapModel.reverseGeocode(story.location['lat'], story.location['lng'], callback)
           // sleep for 3 seconds
+          function sleep(milliseconds) {
+                var start = new Date().getTime();
+                for (var i = 0; i < 1e7; i++) {
+                    if ((new Date().getTime() - start) > milliseconds){
+                        break;
+                    }
+                }
+            }
+          sleep(10000);
         })
       },
       error: function(status, error){
