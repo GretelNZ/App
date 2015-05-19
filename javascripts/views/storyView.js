@@ -70,18 +70,12 @@ StoryView.prototype = {
     });
   },
 
-  registerCompleteStoryInfoEventHandler: function(mapModel, getCompleteStoryInfo, inRange, showCompleteStory) {
-    this.selector.on('click', '.more_button', function(e) {
+  registerCompleteStoryInfoEventHandler: function(mapModel, getCompleteStoryInfo, showCompleteStory) {
+    this.selector.on('click', '.full_story_button', function(e) {
       e.preventDefault();
       var id = $(this).attr("value");
       mapModel.getLocation(function(coords) {
-        inRange(coords, id).done(function(result) {
-          if(result) {
-            getCompleteStoryInfo(showCompleteStory, id);
-          }else{
-            console.log("You are not in range of the story. Walk faster.")
-          }
-        })
+        getCompleteStoryInfo(showCompleteStory, id);
       })
     })
   },
@@ -116,7 +110,7 @@ StoryView.prototype = {
       storyHTML += '<li>';
       storyHTML += '<h2>' + story.title + '</h2>';
       storyHTML += '<p>'+story.first_contribution['content']+'</p>'
-      storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
+      storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
       storyHTML += '</li>';
       storyHTML += '</div>';
       $('#container').prepend(storyHTML);
@@ -165,6 +159,24 @@ StoryView.prototype = {
         storyHTML += "</div>";
 
         $("#container").append(storyHTML);
+    }
+  },
+
+  showCompleteStory: function(story) {
+    $('#container').empty()
+    if(story.completed) {
+      var fullStoryHTML = '<div id="full-story">'
+      fullStoryHTML += "<h3>Title of story: " +story.title+"</h3>";
+      fullStoryHTML += '<ul>'
+      $.each(story.all_contributions, function(
+        index, contribution){
+        fullStoryHTML += '<li>'
+        fullStoryHTML += contribution['content'] + ' - '
+        fullStoryHTML += '<i>' + contribution['username'] + '</i>'
+        fullStoryHTML += '</li>'
+      });
+    fullStoryHTML += '</ul></div>'
+    $('#container').append(fullStoryHTML)
     }
   }
 

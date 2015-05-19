@@ -87,6 +87,19 @@ StoryModel.prototype = {
         console.log("Error");
       }
     })
+  },
+
+  getCompleteStoryInfo: function(showCompleteStory, id) {
+    $.ajax({
+      url: "https://corpsebook-server.herokuapp.com/stories/" + id,
+      type: "GET",
+      success: function(data) {
+        showCompleteStory(data)
+      },
+      error: function() {
+        console.log("Error");
+      }
+    })
   }
 
 }
