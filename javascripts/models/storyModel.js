@@ -18,8 +18,10 @@ StoryModel.prototype = {
       success: function(data){
         $('#container').empty();
         $.each(data, function(index, story){
-          mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showIncompleteStories(story, address)
-          })
+          // bach data in chunks of 5
+            var callback = function(address) { showIncompleteStories(story, address) };
+            mapModel.reverseGeocode(story.location['lat'], story.location['lng'], callback)
+          // sleep for 3 seconds
         })
       },
       error: function(status, error){

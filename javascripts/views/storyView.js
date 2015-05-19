@@ -81,6 +81,7 @@ StoryView.prototype = {
   },
 
   showIncompleteStories: function(story, address){
+    console.log(story)
     if(!story.completed){
     var storyHTML = '<div id="story_' + story.id + '">';
     storyHTML += '<li>';
@@ -136,11 +137,10 @@ StoryView.prototype = {
       var storyHTML = "<div class='story-detail'>";
       storyHTML += "<h3>Title of story: " +story.title+"</h3>";
       storyHTML += "<h3>Location: " +address+"</h3>";
-      if(story.contribution_length > 0){
-        storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution['content'] + ' - ' + story.last_contribution['username'] + "</p>";
-        console.log(story.last_contribution)
-      }else{
+      if(story.last_contribution == null){
         storyHTML += "<p>This story has had no contribution yet</p>"
+      }else{
+        storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution.content + ' - ' + story.last_contribution.username + "</p>";
       }
 
         // Contribution Form
