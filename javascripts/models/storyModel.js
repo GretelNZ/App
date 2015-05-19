@@ -26,7 +26,7 @@ StoryModel.prototype = {
 
   getCompleteStories: function(showStories){
     $.ajax({
-      url: 'https://corpsebook-server.herokuapp.com/completed',
+      url: 'https://corpsebook-server.herokuapp.com/stories/completed',
       type: 'GET',
       success: function(data){
         showStories(data);
