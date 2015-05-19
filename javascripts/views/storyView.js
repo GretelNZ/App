@@ -70,6 +70,22 @@ StoryView.prototype = {
     });
   },
 
+  registerCompleteStoryInfoEventHandler: function(mapModel, getCompleteStoryInfo, inRange, showCompleteStory) {
+    this.selector.on('click', '.more_button', function(e) {
+      e.preventDefault();
+      var id = $(this).attr("value");
+      mapModel.getLocation(function(coords) {
+        inRange(coords, id).done(function(result) {
+          if(result) {
+            getCompleteStoryInfo(showCompleteStory, id);
+          }else{
+            console.log("You are not in range of the story. Walk faster.")
+          }
+        })
+      })
+    })
+  },
+
   showIncompleteStories: function(data){
     $('#container').empty();
     // $('#container').append('<ul>');
