@@ -10,14 +10,16 @@ SearchView.prototype = {
     });
   },
 
-  registerSubmitSearchEventHandler: function(getGeocodedAddress ){
+  registerSubmitSearchEventHandler: function(getGeocodedLocation){
     this.selector.on('submit', '.search_by_location_form', function(e){
       e.preventDefault();
+      var address = $(this).serialize();
+      getGeocodedLocation(address);
       console.log("submitted search location");
     });
   },
 
-  showStories: function(data){
+  showStoriesWithSearchField: function(data){
     $('#container').empty();
      var searchFormHTML = "<div id='search_by_location'><form class='search_by_location_form'><input type='text' placeholder='Enter Location'></input><button type='submit' value='Submit'>Search</button></form></div>";
     $.each(data, function(i, story){

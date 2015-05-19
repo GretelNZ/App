@@ -1,4 +1,4 @@
-var geocoder;
+var geocoder = new google.maps.Geocoder();
 
 function getStoryCoords() {
   if (navigator.geolocation) {
