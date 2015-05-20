@@ -11,7 +11,7 @@ SearchView.prototype = {
   },
 
   registerSubmitSearchEventHandler: function(getGeocodedLocation, mapView, mapModel){
-    this.selector.on('submit', '.search_by_location_form', function(e){
+    this.selector.on('submit', '.search_by_location', function(e){
       e.preventDefault();
       var address = $(this).serialize();
       mapView.displayMap();
@@ -37,7 +37,7 @@ SearchView.prototype = {
       storyHTML += '</li>';
       storyHTML += '</div>';
       // $('#container').prepend(storyHTML);
-
+      // $('.')
     })
   }
 }
