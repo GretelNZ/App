@@ -5,19 +5,23 @@ function MapView(selector){
 MapView.prototype = {
   displayMap: function() {
     $('#container').empty();
-    $('#container').append('<div id="map-canvas"></div>')
+    $('#container').append('<div class="post-wrapper content-wrapper"><div id="map-canvas"></div></div>')
   },
 
   registerMapViewEventHandler: function(mapModel, formatMap) {
     self = this
     $('body').on('click', 'a[href="#map"]', function(e) {
       e.preventDefault();
-      $( "#container" ).load( "map_view.html" );
-      self.displayMap();
-      mapModel.getLocation(function(coords){
-        var map = formatMap(coords);
-        mapModel.getNearbyMap(coords, map);
-      })
+      self.registerDefaultMapViewEventHandler(mapModel, formatMap)
+    })
+  },
+
+  registerDefaultMapViewEventHandler: function(mapModel, formatMap) {
+    self = this
+    self.displayMap();
+    mapModel.getLocation(function(coords){
+      var map = formatMap(coords);
+      mapModel.getNearbyMap(coords, map);
     })
   },
 
@@ -33,13 +37,13 @@ MapView.prototype = {
   },
 
   registerMapViewIncompleteEventHandler: function(formatMap, mapModel){
-    $('#navbar').on('click', 'a[href="#map"]', function(e){
-      e.preventDefault();
+    // $('#navbar').on('click', 'a[href="#map"]', function(e){
+    //   e.preventDefault();
       mapModel.getLocation(function(coords) {
         var map = formatMap(coords);
         mapModel.getNearbyMap(coords, map);
       })
-    })
+    // })
   },
 
   formatMap: function(coords) {

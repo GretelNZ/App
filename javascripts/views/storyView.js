@@ -1,26 +1,24 @@
 function StoryView(selector){
   this.selector = selector;
+  this.mapCtrl = new MapController(selector);
 }
 
 StoryView.prototype = {
   loadDefaultView: function(mapModel, getIncompleteStories, showStories){
-    $( "#container" ).load( "stories.html");
-    mapModel.getLocation(function(coords){
-      getIncompleteStories(coords, showStories, mapModel);
-    })
+    $( "#top-menu" ).load( "top_menu.html");
+    this.mapCtrl.displayDefaultMap()
   },
 
   registerIncompleteStoriesEventHandler: function(mapModel, getIncompleteStories, showStories){
     this.selector.on('click', 'a[href="#uncompleted"]', function(e){
       e.preventDefault();
-      $noRemove = $('.main-story').first()
-      $('.post-wrapper').html($noRemove)
+      $("#container").empty()
+      $("#container").load("story_row.html")
       mapModel.getLocation(function(coords){
         getIncompleteStories(coords, showStories, mapModel);
       })
     });
   },
-
 
   registerCompleteStoriesEventHandler: function(mapModel, getCompleteStories, showCompleteStories) {
     this.selector.on('click', 'a[href="#completed"]', function(e){
