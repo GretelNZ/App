@@ -25,8 +25,10 @@ MapModel.prototype = {
       },
       success: function(data) {
         $.each(data, function(index, value){
-          var marker = self.mapSuccessLoop(value, map)
-          self.incompleteStoryMapMarkerListener(marker, value)
+          if(!value.completed){
+            var marker = self.mapSuccessLoop(value, map)
+            self.incompleteStoryMapMarkerListener(marker, value)
+          }
         });
       },
       error: function() {
@@ -67,24 +69,24 @@ MapModel.prototype = {
     var marker = new google.maps.Marker({
       position: myLatlng,
       map: map,
-      title: title,
-      url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
+      title: title
     });
     return marker
   },
   completeStoryMapMarkerListener: function(marker, value) {
       google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, value.id)
+      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, new MapModel(), value.id)
     });
   },
 
   incompleteStoryMapMarkerListener: function(marker, value) {
       google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id)
+      new StoryModel().getStoryInfo(new StoryView().showIncompleteStory, value.id, new MapModel())
     });
   },
 
   reverseGeocode: function(lat, lng, callback) {
+    console.log("reverse Geo")
     var latlng = new google.maps.LatLng(lat, lng);
     this.geocoder.geocode({'latLng': latlng}, function(results, status) {
         if(status == google.maps.GeocoderStatus.OK) {

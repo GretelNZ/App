@@ -26,24 +26,17 @@ MapView.prototype = {
   },
 
   registerMapViewCompleteEventHandler: function(formatMap, mapModel){
-    $('#navbar').on('click', '#complete_stories_map', function(e) {
-      e.preventDefault();
-      mapModel.getLocation(function(coords) {
-        var map = formatMap(coords);
-        mapModel.getNearbyCompleteMap(coords, map);
-      })
-
+    mapModel.getLocation(function(coords) {
+      var map = formatMap(coords);
+      mapModel.getNearbyCompleteMap(coords, map);
     })
   },
 
   registerMapViewIncompleteEventHandler: function(formatMap, mapModel){
-    // $('#navbar').on('click', 'a[href="#map"]', function(e){
-    //   e.preventDefault();
-      mapModel.getLocation(function(coords) {
-        var map = formatMap(coords);
-        mapModel.getNearbyMap(coords, map);
-      })
-    // })
+    mapModel.getLocation(function(coords) {
+      var map = formatMap(coords);
+      mapModel.getNearbyMap(coords, map);
+    })
   },
 
   formatMap: function(coords) {

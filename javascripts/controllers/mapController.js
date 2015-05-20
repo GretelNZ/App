@@ -7,8 +7,8 @@ function MapController(selector){
 MapController.prototype = {
   run: function(){
     this.view.registerMapViewEventHandler(this.model, this.view.formatMap)
-    this.view.registerMapViewCompleteEventHandler(this.view.formatMap, this.model);
-    this.view.registerMapViewIncompleteEventHandler(this.view.formatMap, this.model)
+    // this.view.registerMapViewCompleteEventHandler(this.view.formatMap, this.model);
+    // this.view.registerMapViewIncompleteEventHandler(this.view.formatMap, this.model)
   },
   displayDefaultMap: function(){
     this.view.registerDefaultMapViewEventHandler(this.model, this.view.formatMap)
@@ -18,8 +18,5 @@ MapController.prototype = {
   },
   displayMapComplete: function(){
     this.view.registerMapViewCompleteEventHandler(this.view.formatMap, this.model)
-  },
-  test: function() {
-    alert("hi")
   }
 }
