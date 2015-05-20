@@ -43,6 +43,14 @@ StoryView.prototype = {
     });
   },
 
+  registerCreateStoryFormEventHandler: function(showCreateStoryForm){
+    this.selector.on('click', '#new_story_button', function(e){
+      console.log('yrs')
+      e.preventDefault();
+      showCreateStoryForm();
+    });
+  },
+
   registerSubmitStoryEventHandler: function(mapModel, postStory){
     this.selector.on('submit', '.new-story-form', function(e){
       e.preventDefault();

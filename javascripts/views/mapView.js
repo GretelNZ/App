@@ -5,7 +5,7 @@ function MapView(selector){
 MapView.prototype = {
   displayMap: function() {
     $('#container').empty();
-    $('#container').append('<div class="post-wrapper content-wrapper"><div id="map-canvas"></div></div>')
+    $('#container').append('<div id="map-canvas"></div></div>')
   },
 
   registerMapViewEventHandler: function(mapModel, formatMap) {
