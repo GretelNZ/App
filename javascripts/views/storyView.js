@@ -80,13 +80,12 @@ StoryView.prototype = {
     })
   },
 
-  showIncompleteStories: function(story, address){
-    console.log(story)
+  showIncompleteStories: function(story){
     if(!story.completed){
     var storyHTML = '<div id="story_' + story.id + '">';
     storyHTML += '<li>';
     storyHTML += '<h2>' + story.title + '</h2>';
-    storyHTML +=  '<h3>'+ address + '</h3>'
+    storyHTML +=  '<h3>'+ story.location.address + '</h3>'
       if(story.contribution_length > 0 ){
         storyHTML += '<p>'+story.last_contribution['content']+'</p>'
       }else{
@@ -99,13 +98,12 @@ StoryView.prototype = {
     }
   },
 
-  showCompleteStories: function(story, address){
-    console.log(story)
+  showCompleteStories: function(story){
     if(story.completed){
     var storyHTML = '<div id="story_' + story.id + '">';
     storyHTML += '<li>';
     storyHTML += '<h2>' + story.title + '</h2>';
-    storyHTML +=  '<h3>'+ address + '</h3>'
+    storyHTML +=  '<h3>'+ story.location.address + '</h3>'
     storyHTML += '<p>'+story.first_contribution['content']+'</p>'
     storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
     storyHTML += '</li>';
@@ -119,6 +117,8 @@ StoryView.prototype = {
       formHTML += '<h1>Create New Story</h1>'
       formHTML += '<form enctype="application/json" class="new-story-form">'
       formHTML += '<p><input type="text" name="story[title]" placeholder="Title"></p>'
+      formHTML += '<p><input type="text" name="story[contribution]" placeholder="Contribution"></p>'
+      formHTML += '<p><input type="text" name="story[username]" placeholder="Username"></p>'
       formHTML += '<select name="story[contribution_limit]">'
       formHTML += '<option value="10">10</option>'
       formHTML += '<option value="15">15</option>'
@@ -130,13 +130,13 @@ StoryView.prototype = {
       $("#container").append(formHTML);
   },
 
-  showIncompleteStory: function(story, address){
+  showIncompleteStory: function(story){
     var self = this;
     if(!story.completed){
       $('#container').empty();
       var storyHTML = "<div class='story-detail'>";
       storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-      storyHTML += "<h3>Location: " +address+"</h3>";
+      storyHTML += "<h3>Location: " + story.location.address+"</h3>";
       if(story.last_contribution == null){
         storyHTML += "<p>This story has had no contribution yet</p>"
       }else{
@@ -158,12 +158,12 @@ StoryView.prototype = {
     }
   },
 
-  showCompleteStory: function(story, address) {
+  showCompleteStory: function(story) {
     $('#container').empty()
     if(story.completed) {
       var fullStoryHTML = '<div id="full-story">'
       fullStoryHTML += "<h3>Title of story: " +story.title+"</h3>";
-      fullStoryHTML += "<h3>Location: "+address+"</h3>"
+      fullStoryHTML += "<h3>Location: "+ story.location.address+"</h3>"
       fullStoryHTML += '<ul>'
       $.each(story.all_contributions, function(
         index, contribution){
