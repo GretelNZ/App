@@ -16,10 +16,13 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
   <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="stylesheets/idangerous.swiper.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/completed_story.css">
   <script src="js/vendor/jquery-2.0.3.min.js"></script>
   <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.js"></script>
   <script src="js/jquery.fittext.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/new_story.js"></script>
 
   <script src="../javascripts/views/mapView.js"></script>
   <script src="../javascripts/models/mapModel.js"></script>
@@ -45,7 +48,7 @@
           <div class="right"><span>Stories</span></div>
         </li>
         <li onClick="window.location.href = 'new_story.html';">
-          <div class="right"><span>Create Story</span></div>
+          <div class="right"><span id="nav-create-story">Create Story</span></div>
         </li>
         <li >
           <div id="search_by_location_button" class="right"><span>Search By Location</span></div>
