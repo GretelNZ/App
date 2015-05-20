@@ -43,19 +43,14 @@ StoryView.prototype = {
     });
   },
 
-  registerCreateStoryFormEventHandler: function(showCreateStoryForm){
-    this.selector.on('click', '#new_story_button', function(e){
-      e.preventDefault();
-      showCreateStoryForm();
-    });
-  },
-
   registerSubmitStoryEventHandler: function(mapModel, postStory){
     this.selector.on('submit', '.new-story-form', function(e){
       e.preventDefault();
       var data = $(this);
       mapModel.getLocation(function(coords){
         postStory(coords, data);
+        var baseUrl = document.location.origin;
+        window.location = baseUrl + "/templates/main.html";
       })
     });
   },
@@ -148,24 +143,6 @@ StoryView.prototype = {
       }
     }
 
-  },
-
-  showCreateStoryForm: function(){
-    var formHTML = '<div class="new-story">'
-      formHTML += '<h1>Create New Story</h1>'
-      formHTML += '<form enctype="application/json" class="new-story-form">'
-      formHTML += '<p><input type="text" name="story[title]" placeholder="Title"></p>'
-      formHTML += '<p><input type="text" name="story[contribution]" placeholder="Contribution"></p>'
-      formHTML += '<p><input type="text" name="story[username]" placeholder="Username"></p>'
-      formHTML += '<select name="story[contribution_limit]">'
-      formHTML += '<option value="10">10</option>'
-      formHTML += '<option value="15">15</option>'
-      formHTML += '<option value="20">20</option>'
-      formHTML += '</select>'
-      formHTML += '<p class="submit"><button type="submit" value="Submit" id="btn-create-story">Submit</button></p>'
-      formHTML += '</form></div>';
-      $("#container").empty();
-      $("#container").append(formHTML);
   },
 
   showIncompleteStory: function(story){
