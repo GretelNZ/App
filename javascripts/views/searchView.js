@@ -25,21 +25,19 @@ SearchView.prototype = {
 
   showCompleteStoriesWithSearchField: function(story){
     $('#container').empty();
-    $('#search').empty();
-    var searchFormHTML = "<form class='search_by_location_form'>";
-    searchFormHTML += "<input type='text' name='address' placeholder='Enter Location'></input>";
-    searchFormHTML += "<button type='submit' value='submit'>Search</button>";
-    searchFormHTML += "</form>";
-    $('#search').append(searchFormHTML);
+    // $('#search').empty();
+    $('#container').load('search.html', function(data){
 
-    var storyHTML = '<div id="story_' + story.id + '">';
-    storyHTML += '<li>';
-    storyHTML += '<h2>' + story.title + '</h2>';
-    storyHTML +=  '<h3>'+ story.location.address + '</h3>'
-    storyHTML += '<p>'+story.first_contribution['content']+'</p>'
-    storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
-    storyHTML += '</li>';
-    storyHTML += '</div>';
-    $('#container').prepend(storyHTML);
+      var storyHTML = '<div id="story_' + story.id + '">';
+      storyHTML += '<li>';
+      storyHTML += '<h2>' + story.title + '</h2>';
+      storyHTML +=  '<h3>'+ story.location.address + '</h3>'
+      storyHTML += '<p>'+story.first_contribution['content']+'</p>'
+      storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
+      storyHTML += '</li>';
+      storyHTML += '</div>';
+      // $('#container').prepend(storyHTML);
+
+    })
   }
 }

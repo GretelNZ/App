@@ -36,7 +36,7 @@ AppView.prototype = {
     });
   },
 
-  loadSearchButton: function(){
-    $('body').prepend('<div id="search"><button id="search_by_location_button">Search By Location</button></div>');
-  }
+  // loadSearchButton: function(){
+  //   $('body').prepend('<div id="search"><button id="search_by_location_button">Search By Location</button></div>');
+  // }
 };
