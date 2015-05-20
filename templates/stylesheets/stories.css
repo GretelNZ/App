@@ -145,7 +145,7 @@ span.pull-right.title.color-red.location {
   float: left;
   width: 100%;
 }
-.contribution-button {
+.sidebar {
   padding-top: 10px;
   float: right;
   margin-right: -100px;
@@ -153,14 +153,14 @@ span.pull-right.title.color-red.location {
   background-color: #4FC3F7;
 }
 .content-story,
-.contribution-button {
+.sidebar {
   padding-bottom: 99999px;
   margin-bottom: -99999px;
 }
 section{
   padding: 20px;
 }
-.contribution-button img{
+.sidebar img{
   width: 80px;
 }
 @media all and (max-width: 840px) {
@@ -171,18 +171,18 @@ section{
   .content-story {
     float: none;
   }
-  .contribution-button {
+  .sidebar {
     float: none;
     margin-right: 0;
     width: 100%;
     background-color: #4FC3F7;
     border-radius: 0 0 10px 10px;
   }
-  .contribution-button img{
+  .sidebar img{
     width: 30px;
   }
   .content-story,
-  .contribution-button {
+  .sidebar {
     padding-bottom: 10px;
     margin-bottom: 0;
   }
