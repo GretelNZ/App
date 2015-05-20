@@ -85,8 +85,10 @@ MapModel.prototype = {
   },
 
   reverseGeocode: function(lat, lng, callback) {
+    console.log("reverse Geo")
     var latlng = new google.maps.LatLng(lat, lng);
     this.geocoder.geocode({'latLng': latlng}, function(results, status) {
+      console.log(status)
         if(status == google.maps.GeocoderStatus.OK) {
             if(results[0]) {
                 callback(results[0].address_components[1].long_name);
