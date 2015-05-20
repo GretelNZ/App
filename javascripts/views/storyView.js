@@ -170,12 +170,12 @@ StoryView.prototype = {
       $.each(story.all_contributions, function(index, contribution) {
 
         var storyHTML = '<li>'
-        storyHTML += contribution.content + ' - <i>' + contribution.username + '</i>'
+        storyHTML += contribution.content + '<div class="pull-right"><i>' + contribution.username + '</i></div>'
         storyHTML += '</li>'
-        $('.ui-state-default').append(storyHTML)
+        $('.well ul').append(storyHTML)
       })
       $('.pull-left').append(story.title)
-      $('.pull-right').append(story.location.address)
+      $('.pull-right location').append(story.location.address)
     }
   })
 }
