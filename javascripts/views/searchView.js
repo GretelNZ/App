@@ -23,24 +23,7 @@ SearchView.prototype = {
     })
   },
 
-  // showCompleteStories: function(story, address){
-
-  //   $.each(function(i, story){
-
-  //     var storyHTML = '<div id="story_' + story.id + '">';
-  //     storyHTML += '<li>';
-  //     storyHTML += '<h2>' + story.title + '</h2>';
-  //     storyHTML +=  '<h3>'+ address + '</h3>';
-  //     storyHTML += '<p>'+story.first_contribution['content']+'</p>';
-  //     storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
-  //     storyHTML += '</li>';
-  //     storyHTML += '</div>';
-  //     $('#container').prepend(storyHTML);
-  //   });
-
-  },
-
-  showCompleteStoriesWithSearchField: function(story, address){
+  showCompleteStoriesWithSearchField: function(story){
     $('#container').empty();
     $('#search').empty();
     var searchFormHTML = "<form class='search_by_location_form'>";
@@ -52,9 +35,9 @@ SearchView.prototype = {
     var storyHTML = '<div id="story_' + story.id + '">';
     storyHTML += '<li>';
     storyHTML += '<h2>' + story.title + '</h2>';
-    storyHTML +=  '<h3>'+ address + '</h3>';
-    storyHTML += '<p>'+story.first_contribution['content']+'</p>';
-    storyHTML += '<button class="more_button" value="' + story.id + '">See more</button>';
+    storyHTML +=  '<h3>'+ story.location.address + '</h3>'
+    storyHTML += '<p>'+story.first_contribution['content']+'</p>'
+    storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
     storyHTML += '</li>';
     storyHTML += '</div>';
     $('#container').prepend(storyHTML);

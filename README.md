@@ -37,3 +37,6 @@ Release 4:
 * User interaction
 * Story creation/search
 
+NOTES/BUGS
+-------
+* search forms only submit on clicking "submit" not hitting enter/return

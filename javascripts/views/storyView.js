@@ -1,33 +1,45 @@
 function StoryView(selector){
   this.selector = selector;
+  this.mapCtrl = new MapController(selector);
 }
 
 StoryView.prototype = {
   loadDefaultView: function(mapModel, getIncompleteStories, showStories){
-    $( "#container" ).load( "stories.html");
-    mapModel.getLocation(function(coords){
-      getIncompleteStories(coords, showStories, mapModel);
-    })
+    $( "#top-menu" ).load( "top_menu.html");
+    this.mapCtrl.displayDefaultMap()
   },
 
   registerIncompleteStoriesEventHandler: function(mapModel, getIncompleteStories, showStories){
+    var controller = this.mapCtrl
     this.selector.on('click', 'a[href="#uncompleted"]', function(e){
       e.preventDefault();
-      $noRemove = $('.main-story').first()
-      $('.post-wrapper').html($noRemove)
-      mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showStories, mapModel);
-      })
+      var active2 = $(".active2").find('a.active')
+      if(active2.attr('href') == '#map') {
+        controller.displayMapIncomplete()
+      } else {
+        $("#container").empty()
+        $("#container").load("story_row.html")
+        mapModel.getLocation(function(coords){
+          getIncompleteStories(coords, showStories, mapModel);
+        })
+      }
     });
   },
 
-
   registerCompleteStoriesEventHandler: function(mapModel, getCompleteStories, showCompleteStories) {
+    var controller = this.mapCtrl
     this.selector.on('click', 'a[href="#completed"]', function(e){
       e.preventDefault();
-      mapModel.getLocation(function(coords){
-        getCompleteStories(coords, showCompleteStories, mapModel);
-      })
+      var active2 = $(".active2").find('a.active')
+      if(active2.attr('href') == '#map') {
+        controller.displayMapComplete()
+      } else {
+        $("#container").empty()
+        $("#container").load("story_row.html")
+        mapModel.getLocation(function(coords){
+          getCompleteStories(coords, showCompleteStories, mapModel);
+        })
+      }
     });
   },
 
@@ -52,7 +64,7 @@ StoryView.prototype = {
     $('#navbar').on('click', '#list_button', function(e){
       e.preventDefault();
       mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showIncompleteStories);
+        getIncompleteStories(coords, showIncompleteStories, mapModel);
       })
     });
   },
@@ -77,8 +89,9 @@ StoryView.prototype = {
     this.selector.on('click', '.full_story_button', function(e) {
       e.preventDefault();
       var id = $(this).attr("value");
+      console.log(id);
       mapModel.getLocation(function(coords) {
-        getCompleteStoryInfo(mapModel, showCompleteStory, id);
+        getCompleteStoryInfo(showCompleteStory, mapModel, id);
       })
     })
   },
@@ -90,8 +103,7 @@ StoryView.prototype = {
       current_story = '#story_' + story.id
       $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
-      $(current_story + ' .pull-right').append(address);
-
+      $(current_story + ' .pull-right').append(story.location.address);
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.last_contribution['content'])
       }else{
@@ -108,7 +120,7 @@ StoryView.prototype = {
       current_story = '#story_' + story.id
       $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
-      $(current_story + ' .pull-right').append(address);
+      $(current_story + ' .pull-right').append(story.location.address);
 
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.first_contribution['content'])
@@ -124,6 +136,8 @@ StoryView.prototype = {
       formHTML += '<h1>Create New Story</h1>'
       formHTML += '<form enctype="application/json" class="new-story-form">'
       formHTML += '<p><input type="text" name="story[title]" placeholder="Title"></p>'
+      formHTML += '<p><input type="text" name="story[contribution]" placeholder="Contribution"></p>'
+      formHTML += '<p><input type="text" name="story[username]" placeholder="Username"></p>'
       formHTML += '<select name="story[contribution_limit]">'
       formHTML += '<option value="10">10</option>'
       formHTML += '<option value="15">15</option>'
@@ -135,18 +149,17 @@ StoryView.prototype = {
       $("#container").append(formHTML);
   },
 
-  showIncompleteStory: function(story, address){
+  showIncompleteStory: function(story){
     var self = this;
     if(!story.completed){
       $('#container').empty();
       var storyHTML = "<div class='story-detail'>";
       storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-      storyHTML += "<h3>Location: " +address+"</h3>";
-      if(story.contribution_length > 0){
-        storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution['content'] + ' - ' + story.last_contribution['username'] + "</p>";
-        console.log(story.last_contribution)
-      }else{
+      storyHTML += "<h3>Location: " + story.location.address+"</h3>";
+      if(story.last_contribution == null){
         storyHTML += "<p>This story has had no contribution yet</p>"
+      }else{
+        storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution.content + ' - ' + story.last_contribution.username + "</p>";
       }
 
         // Contribution Form
@@ -164,12 +177,12 @@ StoryView.prototype = {
     }
   },
 
-  showCompleteStory: function(story, address) {
+  showCompleteStory: function(story) {
     $('#container').empty()
     if(story.completed) {
       var fullStoryHTML = '<div id="full-story">'
       fullStoryHTML += "<h3>Title of story: " +story.title+"</h3>";
-      fullStoryHTML += "<h3>Location: "+address+"</h3>"
+      fullStoryHTML += "<h3>Location: "+ story.location.address+"</h3>"
       fullStoryHTML += '<ul>'
       $.each(story.all_contributions, function(
         index, contribution){

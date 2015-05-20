@@ -9,7 +9,6 @@ AppView.prototype = {
     this.selector.append('<button id="incomplete_stories_button">Incomplete Stories List</button>');
     this.selector.append('<button id="complete_stories_button">Complete Stories List</button>');
     this.selector.append('<button id="new_story_button">New Story</button>');
-    // this.selector.append('<button id="search_button">Search Stories</button>');
   },
 
   loadMapNavBar: function(){
@@ -33,6 +32,11 @@ AppView.prototype = {
     $("#navbar").append('<button id="incomplete_stories_button">Incomplete Stories List</button>');
     $("#navbar").append('<button id="complete_stories_button">Complete Stories List</button>');
     $("#navbar").append('<button id="new_story_button">New Story</button>');
+
     });
+  },
+
+  loadSearchButton: function(){
+    $('body').prepend('<div id="search"><button id="search_by_location_button">Search By Location</button></div>');
   }
-}
+};
