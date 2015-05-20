@@ -108,8 +108,7 @@ StoryView.prototype = {
   registerCompleteStoryInfoEventHandler: function(mapModel, getCompleteStoryInfo, showCompleteStory) {
     this.selector.on('click', '.view-full-story', function(e) {
       e.preventDefault();
-      var id = $(this).attr("value");
-      console.log(id);
+      var id = $(this).attr("data-story-id");
       mapModel.getLocation(function(coords) {
         getCompleteStoryInfo(showCompleteStory, mapModel, id);
       })
@@ -199,21 +198,21 @@ StoryView.prototype = {
 
   showCompleteStory: function(story) {
     $('#container').empty()
-    if(story.completed) {
-      var fullStoryHTML = '<div id="full-story">'
-      fullStoryHTML += "<h3>Title of story: " +story.title+"</h3>";
-      fullStoryHTML += "<h3>Location: "+ story.location.address+"</h3>"
-      fullStoryHTML += '<ul>'
-      $.each(story.all_contributions, function(
-        index, contribution){
-        fullStoryHTML += '<li>'
-        fullStoryHTML += contribution['content'] + ' - '
-        fullStoryHTML += '<i>' + contribution['username'] + '</i>'
-        fullStoryHTML += '</li>'
-      });
-    fullStoryHTML += '</ul></div>'
-    $('#container').append(fullStoryHTML)
+    $("#container").load("completed_story.html", function(data) {
+
+    if(story.completed){
+      $.each(story.all_contributions, function(index, contribution) {
+
+        var storyHTML = '<li>'
+        storyHTML += contribution.content + ' - <i>' + contribution.username + '</i>'
+        storyHTML += '</li>'
+        $('.ui-state-default').append(storyHTML)
+      })
+      $('.pull-left').append(story.title)
+      $('.pull-right').append(story.location.address)
     }
-  }
+  })
+}
 
 }
+
