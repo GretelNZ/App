@@ -61,7 +61,6 @@ body {
 }
 
 header {
-	border-bottom: 1px solid #CCCCCC;
 	height:50px; line-height:50px;
 	background-color:#4FC3F7;
 	position:relative;
@@ -69,92 +68,31 @@ header {
 	padding:0.5em 0 0.5em 0
 }
 header #nav-button {
-	width:40px;
-	height:40px;
+	width:32px;
+	height:32px;
 	float:right;
-	background:url(../images/settings.svg) no-repeat;
+	background:url(../images/arrow.png) no-repeat;
   background-size: contain;
 	position:relative;
 	z-index:98;
 	cursor:pointer;
-	margin: 5px 10px 0px 0px;
+	margin: 8px 15px 0px 0px;
 }
 header .logo {
 	padding-left:0.5em;
+	margin: 5px 15px 0px 5px;
 }
 header .logo img{
-	width: 50px;
+	width: 40px;
+	height: 40px;
 }
 header .logo span{ position:absolute;  white-space:nowrap; padding-left:0.5px; color:#999; font-family: 'Lato'; }
 
-/* ------------ Search Bar ------------------*/
-/*#search {
-	width:50%;
+#nav-text {
+  color:white;
+  padding-left: 10px;
+  font-size: 30px;
 }
-
-.search-container{
-  width: 40%;
-  position: absolute;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-}
-
- header input[type="text"] {
-  height: 40px;
-  font-size: 20px;
-  display: inline-block;
-  font-family: "Lato";
-  font-weight: 300;
-  border: none;
-  outline: none;
-  padding: 3px;
-  padding-right: 60px;
-  width: 0px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  z-index: 3;
-  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
-  cursor: pointer;
-}
-
-header input[type="text"]:focus:hover {
-  border-bottom: 1px solid black;
-}
-
-header input[type="text"]:focus {
-	margin-right: 50px;
-  width: 700px;
-  z-index: 1;
-  border-bottom: 1px solid black;
-  cursor: text;
-}
-header input[type="submit"] {
-	margin: 5px 20px 0px 0px;
-  height: 40px;
-  width: 40px;
-  display: inline-block;
-  color:red;
-  float: right;
-  background:url(../images/search.svg) no-repeat;
-  background-size: contain;
-  text-indent: -10000px;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  cursor: pointer;
-  cursor: pointer;
-  transition: opacity .4s ease;
-}
-
-header input[type="submit"]:hover {
-  opacity: 0.8;
-}*/*/*/
-
 /* --------------------------- Slide Menu (Right Menu)------------------------------*/
 #slideMenu {
 	width:250px;
@@ -167,7 +105,6 @@ header input[type="submit"]:hover {
 	overflow-y: auto;
 	z-index:0;
 }
-
 .theFixed {
 	position:fixed;
 	left:0;
@@ -178,20 +115,17 @@ header input[type="submit"]:hover {
 	background-color:#fff;
 	opacity:0.6;
 }
-
 #slideMenu .left{
 	width:20%; float:left
 }
 #slideMenu .right{
 	width:80%; float:left
 }
-
 #slideMenu ul li {
 	border-bottom:#CCCCCC solid 1px;
 	overflow:hidden;
 	cursor:pointer
 }
-
 #slideMenu ul li:last-child {
 	border-bottom:none
 }
@@ -201,7 +135,6 @@ header input[type="submit"]:hover {
 	display:block;
 	padding:1.25em 0em;
 }
-
 #slideMenu li:hover {
 	background:#4FC3F7;
 	opacity:0.4;
@@ -230,7 +163,6 @@ header input[type="submit"]:hover {
 	background-color:#fff;
 	z-index:99;
 }
-
 #status {
 	width:200px;
 	height:200px;
@@ -241,15 +173,14 @@ header input[type="submit"]:hover {
 	background-repeat:no-repeat;
 	background-position:center;
 	margin:-100px 0 0 -100px;
-
 }
 
 /* --------------------------- General Layout & Fonts ------------------------------*/
 hr{
-border: none;
-border-top: 1px solid #EBEBEB;
-margin: 0.8em auto 0.8em auto;
-width: 100%;
+	border: none;
+	border-top: 1px solid #EBEBEB;
+	margin: 0.8em auto 0.8em auto;
+	width: 100%;
 }
 a {
 	text-decoration:none;
@@ -281,7 +212,7 @@ article {
 	width:50%;
 	float:left;
 	padding:1%;
-		-webkit-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 
@@ -303,12 +234,10 @@ article header h2, article header h3 {
 	font-weight:bold;
 	color:#555555;
 }
-
 article header {
 	height:auto;
 	background-color:#FFF
 }
-
 span.hightLight
 {
 	color: #fff;
@@ -316,7 +245,6 @@ span.hightLight
 	padding: 0.1em 0.4em;
 	text-shadow: none;
 }
-
 span.post-date {
 	font-weight:normal;
 	padding-left:1em;
@@ -357,11 +285,8 @@ article p {
 	margin-top:0
 }
 .post-wrapper ul li {
-	padding:0.1em;
-	margin:0 0 0.1em 0;
 	background-color:#f2f2f2;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
+	margin:0 0 0.6em 0;
 	background-clip: padding-box;
 	position:relative;
 	zoom:1;
@@ -378,7 +303,7 @@ article p {
 	padding:0 0 1em 0;
 	margin-left: auto;
   margin-right: auto;
-    width: 100%;
+  width: 100%;
 }
 .post-wrapper ul li span.title {
 	padding-top: 1em;
@@ -407,7 +332,6 @@ article p {
 	width:100%;
 	height:auto;
 }
-
 .post-wrapper ul .desc-column .desc, .photoFrame p.desc {
 	display:block;
 	margin-top:0.5em;
@@ -415,7 +339,6 @@ article p {
 	word-wrap:break-word;
 	overflow:hidden;
 }
-
 .show-hide li .desc {
 	display:none
 }
@@ -454,7 +377,6 @@ article p {
 }
 /**** disabling Isotope CSS3 transitions ****/
 
-
 .isotope.no-transition, .isotope.no-transition .isotope-item, .isotope .isotope-item.no-transition {
 	-webkit-transition-duration: 0s;
 	-moz-transition-duration: 0s;
@@ -480,11 +402,9 @@ article p {
 #filters li a.selected {
 	background-color:#34abff
 }
-
 #container {
 	-overflow:visible !important;
 }
-
 .box {
 	height: auto;
 	margin-bottom: 2%;
@@ -538,21 +458,17 @@ article p {
 	i.more.close-1 {
 		background:url(../images/dark/close-1.png) no-repeat;
 	}
-
 	.search-container{
   width: 65%;
 	background-color: red;
 	}
-
 	#slideMenu ul li span {
 		display:block;
 		padding:1.40em 0.5em;
 	}
-
 	#map-canvas {
 		height:250px;
 	}
-
 }
 
 /* --------------------------- Tablets ------------------------------*/
@@ -576,11 +492,9 @@ article p {
 	#slideMenu ul li span {
 		padding-left:0.3em
 	}
-
 	#map-canvas {
 		height:300px;
 	}
-
 }
 										/* --------------------------- Hi-Res / Desktop ------------------------------*/
 

@@ -9,6 +9,6 @@ AppController.prototype = {
     this.view.loadNavBar();
     this.view.loadMapNavBar();
     this.view.loadListNavBar();
-    this.view.loadSearchButton();
+    // this.view.loadSearchButton();
   }
 }

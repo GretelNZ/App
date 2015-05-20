@@ -5,32 +5,14 @@ body {
 	background-color: #FFFFFF;
 	min-height: 100%;
 }
-.search-container {
-	/*right: 2%;*/
-	left: 50%;
-  padding:10px 0 0 0;
-}
-
-.search-container input#search {
-  background:red;
-  width:40%;
-}
-
-.search-container input#search_submit {
-  background:blue;
-  height:30px;
-  width:10%;
-}
-
 section.button-group {
-  	height: 30px;
-  	padding-top: 10px;
+	height: 30px;
+	padding-top: 10px;
 }
 .btn-group {
-  	margin: 0 auto;
-  	text-align: center;
+	margin: 0 auto;
+	text-align: center;
 }
-
 .btn{
 	border-radius: 5px;
 	font-size:15px;
@@ -41,102 +23,107 @@ section.button-group {
 	color: #D94436;
 	background-color: #4FC3F7;
 }
-
 .btn:hover{
   background-color: #4FC3F7;
 }
-
 .btn.btn_complete {
 	color: #FFFFFF;
   background-color: #4FC3F7;
 }
 .btn.btn_complete:hover {
-	 box-shadow:
-        inset 0 1px rgba(255,255,255,0.3),
-        inset 0 20px 40px rgba(255,255,255,0.15);
+	box-shadow:
+    inset 0 1px rgba(255,255,255,0.3),
+    inset 0 20px 40px rgba(255,255,255,0.15);
 }
 .btn.btn-s {
 	padding: 6px 10px 8px 10px;
 }
-
-.wrap { width: 100%;}
-.pull-left { float: left; }
-.pull-right { float: right; }
-.clear { clear: both; }
-.wrap > .italic { padding-top: 0.4em; float: left; }
-
-.desc-column { display: inline-block; }
-span.location { font-size: 0.7em; }
+.wrap {
+  width: 100%;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.wrap > .italic {
+  padding-top: 0.4em; float: left;
+}
+.desc-column {
+  display: inline-block;
+}
+span.location {
+  font-size: 0.7em;
+}
 ul.show-hide > li > div.desc-column > p.desc {
 	font-size: 0.95em;
-	/*max-height: 3.6em;*/
   text-align: justify;
 }
 .disable.hide {
 	display: none;
 }
-
 /* Tab Menu */
-.tabs { padding-top: 10px; }
+.tabs {
+  padding-top: 10px;
+}
 #centered-menu {
-   margin: 0 auto;
-   width:100%;
-   overflow:hidden;
-   position:relative;
-   max-width: 1119px;
+  margin: 0 auto;
+  width:100%;
+  overflow:hidden;
+  position:relative;
+  max-width: 1119px;
 }
 #centered-menu ul {
-   display: inline-block;
-   list-style:none;
-   margin:0;
-   padding:0;
-   left:50%;
-   text-align:center;
+  display: inline-block;
+  list-style:none;
+  margin:0;
+  padding:0;
+  left:50%;
+  text-align:center;
 }
 #centered-menu ul li {
-   width:278px;
-   display:block;
-   float:left;
-   list-style:none;
-   margin:0;
-   padding-top:5px;
-   background: #FFFFFF;
+  width:278px;
+  display:block;
+  float:left;
+  list-style:none;
+  margin:0;
+  padding-top:5px;
+  background: #FFFFFF;
 }
 
 #centered-menu ul li#completed a,
 #centered-menu ul li#uncompleted a,
 #centered-menu ul li#map a,
-#centered-menu ul li#list a { /* Added this for rounded edges tabs */
-   border:2px solid #4FC3F7;
-   display:block;
-   padding:3px 10px;
-   color:#000;
-   text-decoration:none;
-   line-height:1.3em;
+#centered-menu ul li#list a {
+  border:2px solid #4FC3F7;
+  display:block;
+  padding:3px 10px;
+  color:#000;
+  text-decoration:none;
+  line-height:1.3em;
 }
-
 #centered-menu ul li#completed a,
 #centered-menu ul li#list a{
   border-right:0px;
   border-radius: 10px 0px 0px 10px;
 }
-
 #centered-menu ul li#uncompleted a,
 #centered-menu ul li#map a{
   border-left:0px;
   border-radius: 0px 10px 10px 0px;
 }
-
 #centered-menu ul li a:hover {
    color:#fff;
 }
 #centered-menu ul li a.active,
 #centered-menu ul li a.active:hover {
-   color:#fff !important;
-   background:#4FC3F7;
-
+  color:#fff !important;
+  background:#4FC3F7;
 }
-
 .post-wrapper ul li span.title {
   padding-bottom: 10px;
 }
@@ -144,52 +131,16 @@ span.pull-right.title.color-red.location {
   padding-top: 10px;
 }
 /* End tab menu */
-
-@media only screen and (max-width: 767px) {
-	.search-container {
-		left: 25%;
-		right: 22%;
-	}
-}
-
-@media only screen and (max-width: 460px) {
-	.search-container { left: 23%; }
-}
-@media only screen and (max-width: 650px) {
-  #centered-menu {
-    max-width:280px !important;
-  }
-  #centered-menu ul li#completed a,
-  #centered-menu ul li#uncompleted a,
-  #centered-menu ul li#map a,
-  #centered-menu ul li#list a {
-    border-radius: 10px 10px 10px 10px !important;
-    border:2px solid #4FC3F7;
-  }
-}
-
-@media only screen and (max-width: 1210px){
-  #centered-menu {
-    max-width:570px;
-  }
-}
-
-
-
-/* ------------------------------------------------------------ *\
-|* ------------------------------------------------------------ *|
-|* Testing
-|* ------------------------------------------------------------ *|
-\* ------------------------------------------------------------ */
 .main-story .container-story {
   padding: 0 100px 0 0;
   overflow: hidden;
+  border-radius: 10px;
 }
 .main-story{
   background:#f2f2f2;
   margin-top: 15px;
+  border-radius: 10px;
 }
-
 .content-story {
   float: left;
   width: 100%;
@@ -200,7 +151,6 @@ span.pull-right.title.color-red.location {
   margin-right: -100px;
   width: 100px;
   background-color: #4FC3F7;
-  /*background-image: url(../images/add-contribution.png);*/
 }
 .content-story,
 .sidebar {
@@ -213,7 +163,6 @@ section{
 .sidebar img{
   width: 80px;
 }
-
 @media all and (max-width: 840px) {
   .main-story .container-story {
     padding: 0;
@@ -227,6 +176,7 @@ section{
     margin-right: 0;
     width: 100%;
     background-color: #4FC3F7;
+    border-radius: 0 0 10px 10px;
   }
   .sidebar img{
     width: 30px;
@@ -239,5 +189,41 @@ section{
   section {
     padding: 10px 20px 0 20px;
     text-align: justify;
+  }
+}
+@media only screen and (max-width: 767px) {
+	.search-container {
+		left: 25%;
+		right: 22%;
+	}
+}
+@media only screen and (max-width: 460px) {
+	.search-container {
+    left: 23%;
+  }
+}
+@media only screen and (max-width: 345px) {
+  #centered-menu {
+    width:280px !important;
+  }
+  #centered-menu ul li {
+    width: 255px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  #centered-menu {
+    max-width:280px !important;
+  }
+  #centered-menu ul li#completed a,
+  #centered-menu ul li#uncompleted a,
+  #centered-menu ul li#map a,
+  #centered-menu ul li#list a {
+    border-radius: 10px 10px 10px 10px !important;
+    border:2px solid #4FC3F7;
+  }
+}
+@media only screen and (max-width: 1210px){
+  #centered-menu {
+    max-width:570px;
   }
 }

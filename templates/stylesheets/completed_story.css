@@ -1,0 +1,26 @@
+li.ui-state-default{
+  border:none;
+  border-bottom:1px solid #ddd;
+  text-align: left;
+  padding-bottom: 10px !important;
+  border-radius: 0 !important;
+}
+li.ui-state-default:last-child {
+    border-bottom:none;
+}
+strong.primary-font {
+  font-weight: 500;
+  color: #458CAB;
+}
+small.text-muted {
+  font-size: 12px;
+  font-weight: 400;
+  color: #458CAB;
+}
+span.icon-time {
+  background-image: url("../images/clock.png");
+  padding: 0px 8px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
