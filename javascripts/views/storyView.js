@@ -60,13 +60,33 @@ StoryView.prototype = {
     });
   },
 
-  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showIncompleteStories){
-    $('#navbar').on('click', '#list_button', function(e){
+  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showIncompleteStories, getCompleteStories, showCompleteStories){
+    var self = this;
+    this.selector.on('click', 'a[href="#list"]', function(e){
       e.preventDefault();
-      mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showIncompleteStories, mapModel);
-      })
+      var active1 = $(".active1").find('a.active')
+      if(active1.attr('href') == '#uncompleted') {
+        self.displayIncompleteStories(mapModel, getIncompleteStories, showIncompleteStories)
+      } else {
+        self.displayCompleteStories(mapModel, getCompleteStories, showCompleteStories)
+      }
     });
+  },
+
+  displayCompleteStories: function(mapModel, getCompleteStories, showCompleteStories) {
+    $("#container").empty()
+    $("#container").load("story_row.html")
+    mapModel.getLocation(function(coords){
+      getCompleteStories(coords, showCompleteStories, mapModel);
+    })
+  },
+
+  displayIncompleteStories: function(mapModel, getIncompleteStories, showIncompleteStories) {
+    $("#container").empty()
+    $("#container").load("story_row.html")
+    mapModel.getLocation(function(coords){
+      getIncompleteStories(coords, showIncompleteStories, mapModel);
+    })
   },
 
   registerStoryInfoEventHandler: function(mapModel, getStoryInfo, inRange, showIncompleteStory){

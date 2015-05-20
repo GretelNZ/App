@@ -14,7 +14,7 @@ StoryController.prototype = {
     this.view.registerCompleteStoryInfoEventHandler(this.mapModel, this.model.getCompleteStoryInfo, this.view.showCompleteStory)
     this.view.registerCreateStoryFormEventHandler(this.view.showCreateStoryForm)
      this.view.registerSubmitStoryEventHandler(this.mapModel, this.model.postStory)
-     this.view.registerListStoryEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories)
+     this.view.registerListStoryEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories, this.model.getCompleteStories, this.view.showCompleteStories)
 
   }
 }
