@@ -52,7 +52,7 @@ StoryModel.prototype = {
     });
   },
 
-  getGlobalCompleteStories: function(showCompleteStories, mapModel){
+  getGlobalCompleteStories: function(showCompleteStoriesWithSearchField, mapModel){
 
     $.ajax({
       url: 'https://corpsebook-server.herokuapp.com/stories/completed',
@@ -60,7 +60,7 @@ StoryModel.prototype = {
       success: function(data){
         $('#container').empty();
         $.each(data, function(index, story){
-          mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showCompleteStories(story, address)
+          mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showCompleteStoriesWithSearchField(story, address)
           })
         })
       },
