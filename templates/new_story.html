@@ -73,7 +73,7 @@
             <form method="POST" action="#" enctype="application/json" class="frm form-control new-story-form">
               <div class="group-form">
                 <div class="cell-5 pull-left">
-                  <input type="tex" name="story[username]" class="input-form" placeholder="Username" />
+                  <input type="tex" name="story[username]" class="input-form" placeholder="Username" required />
                 </div>
                 <div class="cell-5 pull-right">
                   <!-- Keep it blank -->
@@ -83,7 +83,7 @@
               <div class='clear' style="height: 10px;"></div>
               <div class="group-form">
                 <div class="cell-5 pull-left">
-                  <input type="tex" name="story[title]" class="input-form" placeholder="Title of story" />
+                  <input type="tex" name="story[title]" class="input-form" placeholder="Title of story" required />
                 </div>
                 <div class="cell-5 pull-right">
                   <!-- <p>Location</p> -->
@@ -91,7 +91,7 @@
                 <div class='clear'></div>
               </div>
               <div class="group-form">
-                <textarea cols="15" name="story[contribution]" placeholder="First Contribution" rows="5"></textarea>
+                <textarea cols="15" name="story[contribution]" placeholder="First Contribution" rows="5" required></textarea>
               </div>
               <div class="group-form">
                 <div class="form-control label-title">
