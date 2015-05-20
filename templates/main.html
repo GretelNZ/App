@@ -44,23 +44,25 @@
   <body>
     <nav id="slideMenu">
       <ul>
-        <li onClick="window.location.href = 'stories.html';">
-          <div class="right"><span>Stories</span></div>
+        <li>
+          <div class="right"><a href='/templates/main.html'><span>Stories</span></a></div>
         </li>
-        <li onClick="window.location.href = 'new_story.html';">
-          <div class="right"><span id="nav-create-story">Create Story</span></div>
+        <li>
+          <div class="right"><span>Create Story</span></div>
         </li>
-        <li onClick="window.location.href = 'search.html';">
+        <li>
           <div id="search_by_location_button" class="right"><span>Search By Location</span></div>
         </li>
       </ul>
     </nav>
     <header id="logo">
       <div id="nav-button"></div>
-      <div class="logo">
-        <img src="images/bookicon.png">
-        <span id='nav-text'>Gretel.</span>
-      </div>
+      <a href='/templates/main.html'>
+        <div class="logo">
+          <img src="images/bookicon.png">
+          <span id='nav-text'>Gretel.</span>
+        </div>
+      </a>
     </header>
     <section id="main">
 <!-- This is the content of all pages -->
