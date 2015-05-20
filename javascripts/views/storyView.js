@@ -60,19 +60,39 @@ StoryView.prototype = {
     });
   },
 
-  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showIncompleteStories){
-    $('#navbar').on('click', '#list_button', function(e){
+  registerListStoryEventHandler: function(mapModel, getIncompleteStories, showIncompleteStories, getCompleteStories, showCompleteStories){
+    var self = this;
+    this.selector.on('click', 'a[href="#list"]', function(e){
       e.preventDefault();
-      mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showIncompleteStories, mapModel);
-      })
+      var active1 = $(".active1").find('a.active')
+      if(active1.attr('href') == '#uncompleted') {
+        self.displayIncompleteStories(mapModel, getIncompleteStories, showIncompleteStories)
+      } else {
+        self.displayCompleteStories(mapModel, getCompleteStories, showCompleteStories)
+      }
     });
   },
 
+  displayCompleteStories: function(mapModel, getCompleteStories, showCompleteStories) {
+    $("#container").empty()
+    $("#container").load("story_row.html")
+    mapModel.getLocation(function(coords){
+      getCompleteStories(coords, showCompleteStories, mapModel);
+    })
+  },
+
+  displayIncompleteStories: function(mapModel, getIncompleteStories, showIncompleteStories) {
+    $("#container").empty()
+    $("#container").load("story_row.html")
+    mapModel.getLocation(function(coords){
+      getIncompleteStories(coords, showIncompleteStories, mapModel);
+    })
+  },
+
   registerStoryInfoEventHandler: function(mapModel, getStoryInfo, inRange, showIncompleteStory){
-    this.selector.on('click', '.more_button', function(e){
+    this.selector.on('click', '.a-contribution', function(e){
       e.preventDefault();
-      var id = $(this).attr("value");
+      var id = $(this).attr("data-story-id");
       mapModel.getLocation(function(coords){
         inRange(coords, id).done(function(result){
           if(result){
@@ -86,7 +106,7 @@ StoryView.prototype = {
   },
 
   registerCompleteStoryInfoEventHandler: function(mapModel, getCompleteStoryInfo, showCompleteStory) {
-    this.selector.on('click', '.full_story_button', function(e) {
+    this.selector.on('click', '.view-full-story', function(e) {
       e.preventDefault();
       var id = $(this).attr("value");
       console.log(id);
@@ -104,6 +124,7 @@ StoryView.prototype = {
       $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
       $(current_story + ' .pull-right').append(story.location.address);
+      $(current_story + ' .btn-current-stories').attr('data-story-id', story.id).addClass('a-contribution')
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.last_contribution['content'])
       }else{
@@ -113,7 +134,6 @@ StoryView.prototype = {
   },
 
   showCompleteStories: function(story, address){
-    console.log(story)
     $('.main-story').first().hide()
     if(story.completed){
       $('.post-wrapper').append('<div id=story_' + story.id + '></div>')
@@ -121,7 +141,7 @@ StoryView.prototype = {
       $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
       $(current_story + ' .pull-right').append(story.location.address);
-
+       $(current_story + ' .btn-current-stories').attr('data-story-id', story.id).addClass('view-full-story')
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.first_contribution['content'])
       }else{
@@ -150,31 +170,20 @@ StoryView.prototype = {
   },
 
   showIncompleteStory: function(story){
-    var self = this;
-    if(!story.completed){
       $('#container').empty();
-      var storyHTML = "<div class='story-detail'>";
-      storyHTML += "<h3>Title of story: " +story.title+"</h3>";
-      storyHTML += "<h3>Location: " + story.location.address+"</h3>";
-      if(story.last_contribution == null){
-        storyHTML += "<p>This story has had no contribution yet</p>"
-      }else{
-        storyHTML += "<p><label>Last Contribution:</label> " + story.last_contribution.content + ' - ' + story.last_contribution.username + "</p>";
-      }
-
-        // Contribution Form
-        storyHTML += "<form id='contributionForm' enctype='application/json' class='add-contribution-form'>";
-        storyHTML += "<div><label>Username:</label></div>";
-        storyHTML += "<div><input name='contribution[username]' id='username' placeholder='Username' /></div>"
-        storyHTML += "<div><label>Contribution:</label></div>";
-        storyHTML += "<div><textarea name='contribution[content]' id='contribution' placeholder='Add a line to the story!'></textarea></div>"
-        storyHTML += "<div><button class='btn-submit' name='btn-submit' >Submit</button></div>"
-        storyHTML += "<input type='hidden' name='story_id' value='"+ story.id +"' />"
-        storyHTML += "</form>";
-        storyHTML += "</div>";
-
-        $("#container").append(storyHTML);
-    }
+      $('#container').load("contribution_body.html", function(data){
+        if(!story.completed){
+          $("#story-title").text(story.title)
+          $("span.location").text(story.location.address)
+          $("span.last-contributor-username").text(story.last_contribution.username)
+          $("input[name='story_id']").val(story.id)
+          if(story.last_contribution == null){
+            $("p.desc").text("This story has had no contribution yet")
+          }else{
+            $("p.desc").text(story.last_contribution.content)
+          }
+        }
+      })
   },
 
   showCompleteStory: function(story) {
