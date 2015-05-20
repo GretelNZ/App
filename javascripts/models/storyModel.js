@@ -86,6 +86,7 @@ StoryModel.prototype = {
   },
 
   inRange: function(coords, id){
+    console.log(id, coords)
     return $.ajax({
       url: 'https://corpsebook-server.herokuapp.com/stories/'+id+'/in_range',
       type: 'GET',

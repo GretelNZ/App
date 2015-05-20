@@ -90,9 +90,9 @@ StoryView.prototype = {
   },
 
   registerStoryInfoEventHandler: function(mapModel, getStoryInfo, inRange, showIncompleteStory){
-    this.selector.on('click', '.more_button', function(e){
+    this.selector.on('click', '.a-contribution', function(e){
       e.preventDefault();
-      var id = $(this).attr("value");
+      var id = $(this).attr("data-story-id");
       mapModel.getLocation(function(coords){
         inRange(coords, id).done(function(result){
           if(result){
@@ -106,7 +106,7 @@ StoryView.prototype = {
   },
 
   registerCompleteStoryInfoEventHandler: function(mapModel, getCompleteStoryInfo, showCompleteStory) {
-    this.selector.on('click', '.full_story_button', function(e) {
+    this.selector.on('click', '.view-full-story', function(e) {
       e.preventDefault();
       var id = $(this).attr("value");
       console.log(id);
@@ -124,6 +124,7 @@ StoryView.prototype = {
       $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
       $(current_story + ' .pull-right').append(story.location.address);
+      $(current_story + ' .btn-current-stories').attr('data-story-id', story.id).addClass('a-contribution')
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.last_contribution['content'])
       }else{
@@ -133,7 +134,6 @@ StoryView.prototype = {
   },
 
   showCompleteStories: function(story, address){
-    console.log(story)
     $('.main-story').first().hide()
     if(story.completed){
       $('.post-wrapper').append('<div id=story_' + story.id + '></div>')
@@ -141,7 +141,7 @@ StoryView.prototype = {
       $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
       $(current_story + ' .pull-right').append(story.location.address);
-
+       $(current_story + ' .btn-current-stories').attr('data-story-id', story.id).addClass('view-full-story')
       if(story.contribution_length > 0 ){
         $(current_story + ' .desc').append(story.first_contribution['content'])
       }else{
