@@ -10,22 +10,46 @@ StoryView.prototype = {
   },
 
   registerIncompleteStoriesEventHandler: function(mapModel, getIncompleteStories, showStories){
+    var controller = this.mapCtrl
     this.selector.on('click', 'a[href="#uncompleted"]', function(e){
       e.preventDefault();
-      $("#container").empty()
-      $("#container").load("story_row.html")
-      mapModel.getLocation(function(coords){
-        getIncompleteStories(coords, showStories, mapModel);
-      })
+
+      var active2 = $(".active2").find('a.active')
+      if(active2.attr('href') == '#map') {
+        controller.displayMapIncomplete()
+      } else {
+        $("#container").empty()
+        $("#container").load("story_row.html")
+        mapModel.getLocation(function(coords){
+          getIncompleteStories(coords, showStories, mapModel);
+        })
+      }
+// displayMapComplete
+
+
+
     });
   },
 
   registerCompleteStoriesEventHandler: function(mapModel, getCompleteStories, showCompleteStories) {
+    var controller = this.mapCtrl
     this.selector.on('click', 'a[href="#completed"]', function(e){
       e.preventDefault();
-      mapModel.getLocation(function(coords){
-        getCompleteStories(coords, showCompleteStories, mapModel);
-      })
+
+// console.log(controller)
+      var active2 = $(".active2").find('a.active')
+      if(active2.attr('href') == '#map') {
+        controller.displayMapComplete()
+        // console.log(this)
+      } else {
+        $("#container").empty()
+        $("#container").load("story_row.html")
+        mapModel.getLocation(function(coords){
+          getCompleteStories(coords, showCompleteStories, mapModel);
+        })
+      }
+
+
     });
   },
 
