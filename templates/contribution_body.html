@@ -1,0 +1,38 @@
+<div class="content-wrapper">
+  <article>
+    <div class="post-wrapper noCursor">
+      <ul class="max-height">
+        <li>
+          <div class="desc-column">
+            <span id="story-title" class="title color-red"></span>
+            <span class="title color-red location"></span>
+          </div>
+          <div class="desc-column">
+            <p><label>Last Contribution:</label></p>
+            <p class="desc"></p> - <span class="last-contributor-username"></span>
+            <form method="POST" action="#" id="contributionForm" enctype="application/json" class="add-contribution-form frm form-control">
+              <div class="group-form">
+                <div class="cell-5 pull-left">
+                  <input type="tex" name="contribution[username]" id="username" class="input-form" placeholder="Username">
+                </div>
+                <div class="cell-5 pull-right">
+                  <!-- Keep blank -->
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="group-form">
+                <textarea cols="15" name="contribution[content]" placeholder="Content" rows="5"></textarea>
+              </div>
+              <input type='hidden' name='story_id' value />
+              <div class="group-form">
+                <div class="form-control">
+                  <button class="btn-contribution btn-submit" name='btn-submit' type="submit">Contribution</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </article>
+</div>
