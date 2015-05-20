@@ -25,8 +25,10 @@ MapModel.prototype = {
       },
       success: function(data) {
         $.each(data, function(index, value){
-          var marker = self.mapSuccessLoop(value, map)
-          self.incompleteStoryMapMarkerListener(marker, value)
+          if(!value.completed){
+            var marker = self.mapSuccessLoop(value, map)
+            self.incompleteStoryMapMarkerListener(marker, value)
+          }
         });
       },
       error: function() {
@@ -68,13 +70,12 @@ MapModel.prototype = {
       position: myLatlng,
       map: map,
       title: title
-      // url: 'https://corpsebook-server.herokuapp.com/stories/' + value.id
     });
     return marker
   },
   completeStoryMapMarkerListener: function(marker, value) {
       google.maps.event.addListener(marker, 'click', function() {
-      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, new MapModel(),  value.id)
+      new StoryModel().getCompleteStoryInfo(new StoryView().showCompleteStory, new MapModel(), value.id)
     });
   },
 

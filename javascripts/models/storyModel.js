@@ -18,10 +18,7 @@ StoryModel.prototype = {
       success: function(data){
         $('#container').empty();
         $.each(data, function(index, story){
-          // bach data in chunks of 5
-            var callback = function(address) { showIncompleteStories(story, address) };
-            mapModel.reverseGeocode(story.location['lat'], story.location['lng'], callback)
-          // sleep for 3 seconds
+          showIncompleteStories(story)
         })
       },
       error: function(status, error){
@@ -44,8 +41,7 @@ StoryModel.prototype = {
       success: function(data){
         $('#container').empty();
         $.each(data, function(index, story){
-          mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showCompleteStories(story, address)
-          })
+          showCompleteStories(story)
         })
       },
       error: function(status, error){
@@ -62,13 +58,10 @@ StoryModel.prototype = {
       success: function(data){
         $('#container').empty();
         $.each(data, function(index, story){
-          mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showCompleteStoriesWithSearchField(story, address)
-          })
+          showCompleteStoriesWithSearchField(story)
         })
       },
-      // success: function(data){
-      //   showCompleteStories(data)
-      // },
+
       error: function(status, error){
         alert('Error')
       }
@@ -78,6 +71,7 @@ StoryModel.prototype = {
   postStory: function(coords, data){
     var story = data.serialize();
     story += '&story%5Blat%5D=' + coords.lat + '&story%5Blng%5D=' + coords.lng
+    console.log(story)
     $.ajax({
       url: 'https://corpsebook-server.herokuapp.com/stories',
       type: 'POST',
@@ -112,8 +106,7 @@ StoryModel.prototype = {
       url: "https://corpsebook-server.herokuapp.com/stories/" + id,
       type: "GET",
       success: function(data) {
-        mapModel.reverseGeocode(data.location['lat'], data.location['lng'], function(address) {showIncompleteStory(data, address)
-        })
+        showIncompleteStory(data)
       },
       error: function() {
         console.log("Error");
@@ -126,8 +119,8 @@ StoryModel.prototype = {
       url: "https://corpsebook-server.herokuapp.com/stories/" + id,
       type: "GET",
       success: function(data) {
-        mapModel.reverseGeocode(data.location['lat'], data.location['lng'], function(address) {showCompleteStory(data, address)
-        })
+        console.log(data)
+        showCompleteStory(data)
       },
       error: function() {
         console.log("Error");
