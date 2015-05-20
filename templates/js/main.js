@@ -12,57 +12,12 @@ $(".main").fitText(1.5, { minFontSize: '16px', maxFontSize: '60px' });
         $(this).addClass('clicked');
     })
 
-// $('.close-3').on('click',function(){
-
-// 	$(this).parent('div').animate({
-// 		opacity :0
-// 	},function()
-// 	{
-// 	$(this).remove();
-// 	});
-
-// });
-
-//     $('.show-hide li').toggle(function () {
-
-//         var $default = $(this).parent().attr('class');
-//         $classStr = $(this).find('.more').attr('class');
-
-//         if ($default.indexOf('max-height') !== -1) {
-//             $(this).find('.disable').removeClass('hide')
-//             $(this).find('.desc').css('max-height', 'inherit');
-//         } else {
-//             $(this).find('.desc:hidden').slideDown();
-//         }
-
-//         $lastClass = $classStr.substr($classStr.lastIndexOf(' ') + 1).split('-')[1];
-//         $(this).find('.more').removeClass('open-' + $lastClass).addClass('close-' + $lastClass);
-
-//         if ($('.more').is(':visible')) {
-//             $('html, body').animate({
-//                 scrollTop: $(this).offset().top
-//             }, 0);
-//         }
-//     }, function () {
-
-//         var $default = $(this).parent().attr('class');
-
-//         if ($default.indexOf('max-height') !== -1) {
-//             $(this).find('.desc').css('max-height', '3.6em');
-//             $(this).find('.disable').addClass('hide')
-//         } else {
-//             $(this).find('.desc:visible').slideUp();
-//         }
-
-//         $(this).find('.more').removeClass('close-' + $lastClass).addClass('open-' + $lastClass);
-//     });
-
-        function boxResize() {
-            _height = $(window).height();
-            _width = $(window).width();
-            var padding = $('nav.main ul li').css('padding-right')
-            $('nav.main ul li div').css('height', ((_height - 70) / 3) - parseInt(padding) * 2);
-        }
+    function boxResize() {
+        _height = $(window).height();
+        _width = $(window).width();
+        var padding = $('nav.main ul li').css('padding-right')
+        $('nav.main ul li div').css('height', ((_height - 70) / 3) - parseInt(padding) * 2);
+    }
 
     $(window).on("load resize", function (e) {
 
@@ -81,7 +36,7 @@ $(".main").fitText(1.5, { minFontSize: '16px', maxFontSize: '60px' });
     $slideMenu = $("#slideMenu")
 
     $('#nav-button').on('click', function () {
-        $('#nav-button').css({ 'transform':'rotate(90deg)', 'transition-duration': '0.7s'})
+        $('#nav-button').css({ 'transform':'rotate(180deg)', 'transition-duration': '0.7s'})
         $('#main, header#logo, footer').css({
                 'left':'0',
                 'transition' : 'all 0.5s ease-out',

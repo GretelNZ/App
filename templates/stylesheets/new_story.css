@@ -11,32 +11,26 @@ input.input-form {
   padding: 6px 15px;
   background-color: #fff;
 }
-
 .btn-contribution{
   width:150px !important;
   float: right;
 }
-
 form.form-control {
   margin: 0 0 10px 0;
   padding-top: 1em;
 }
-
 .cell-9 {
   width: 90%;
 }
 .cell-5 {
   width: 49%;
 }
-
 form.form-control > .group-form:last-child {
   margin-top: 40px;
 }
-
 #slider {
   position: relative;
 }
-
 .ui-slider {
   width: 100%;
   background: #428bca;
@@ -45,24 +39,20 @@ form.form-control > .group-form:last-child {
   cursor: pointer;
   margin: 30px 0 0 30px;
 }
-
 .ui-slider a, .ui-slider a:focus {
   outline: none;
 }
-
 .ui-slider .ui-slider-handle label {
   background: #4FC3F7;
   border-radius: 20px;
   cursor: pointer;
   width: 4.2em;
 }
-
 label {
   display: inline-block;
   margin-bottom: 5px;
   font-weight: 700;
 }
-
 .ui-slider .ui-slider-handle {
   position: absolute;
   z-index: 2;
@@ -73,11 +63,9 @@ label {
   color: #FFFFFF;
   font-size: 15px;
 }
-
 .row-left, .row-right {
   color: #FFFFFF;
 }
-
 @media only screen and (max-width: 870px) {
   .cell-5 {
     width: 47%;
