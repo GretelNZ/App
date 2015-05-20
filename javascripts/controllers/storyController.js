@@ -10,6 +10,7 @@ StoryController.prototype = {
     this.view.loadDefaultView(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories)
     this.view.registerIncompleteStoriesEventHandler(this.mapModel, this.model.getIncompleteStories, this.view.showIncompleteStories)
     this.view.registerCompleteStoriesEventHandler(this.mapModel, this.model.getCompleteStories, this.view.showCompleteStories)
+    this.view.registerCreateStoryFormEventHandler(this.view.showCreateStoryForm)
     this.view.registerStoryInfoEventHandler(this.mapModel, this.model.getStoryInfo, this.model.inRange, this.view.showIncompleteStory)
     this.view.registerCompleteStoryInfoEventHandler(this.mapModel, this.model.getCompleteStoryInfo, this.view.showCompleteStory)
      this.view.registerSubmitStoryEventHandler(this.mapModel, this.model.postStory)
