@@ -39,7 +39,6 @@ StoryModel.prototype = {
       type: 'GET',
       data: search,
       success: function(data){
-        $('#container').empty();
         $.each(data, function(index, story){
           mapModel.reverseGeocode(story.location['lat'], story.location['lng'], function(address) {showCompleteStories(story, address)
           })

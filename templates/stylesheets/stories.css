@@ -136,20 +136,13 @@ ul.show-hide > li > div.desc-column > p.desc {
    background:#4FC3F7;
 
 }
-.post-wrapper ul li{
-<<<<<<< HEAD
-  border-radius: 0 !important;
-  padding: 0 !important;
-=======
-  border-radius: 10px !important;
->>>>>>> 07ff48e886b8e31d21cb9b6ad4cf2486eca6e803
+
+.post-wrapper ul li span.title {
+  padding-bottom: 10px;
 }
-  .post-wrapper ul li span.title {
-    padding-bottom: 10px;
-  }
-  span.pull-right.title.color-red.location {
-    padding-top: 10px;
-  }
+span.pull-right.title.color-red.location {
+  padding-top: 10px;
+}
 /* End tab menu */
 
 @media only screen and (max-width: 767px) {
@@ -174,7 +167,8 @@ ul.show-hide > li > div.desc-column > p.desc {
     border:2px solid #4FC3F7;
   }
 }
-@media only screen and (max-width: 1170px){
+
+@media only screen and (max-width: 1210px){
   #centered-menu {
     max-width:570px;
   }

@@ -10,8 +10,9 @@ MapView.prototype = {
 
   registerMapViewEventHandler: function(mapModel, formatMap) {
     self = this
-    $('#navbar').on('click', '#map_button', function(e) {
+    $('body').on('click', 'a[href="#map"]', function(e) {
       e.preventDefault();
+      $( "#container" ).load( "map_view.html" );
       self.displayMap();
       mapModel.getLocation(function(coords){
         var map = formatMap(coords);
@@ -32,7 +33,7 @@ MapView.prototype = {
   },
 
   registerMapViewIncompleteEventHandler: function(formatMap, mapModel){
-    $('#navbar').on('click', '#incomplete_stories_map', function(e){
+    $('#navbar').on('click', 'a[href="#map"]', function(e){
       e.preventDefault();
       mapModel.getLocation(function(coords) {
         var map = formatMap(coords);

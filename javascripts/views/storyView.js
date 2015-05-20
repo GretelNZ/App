@@ -4,15 +4,17 @@ function StoryView(selector){
 
 StoryView.prototype = {
   loadDefaultView: function(mapModel, getIncompleteStories, showStories){
-    $( "#container" ).load( "stories.html" );
+    $( "#container" ).load( "stories.html");
     mapModel.getLocation(function(coords){
       getIncompleteStories(coords, showStories, mapModel);
     })
   },
 
   registerIncompleteStoriesEventHandler: function(mapModel, getIncompleteStories, showStories){
-    this.selector.on('click', '#incomplete_stories_button', function(e){
+    this.selector.on('click', 'a[href="#uncompleted"]', function(e){
       e.preventDefault();
+      $noRemove = $('.main-story').first()
+      $('.post-wrapper').html($noRemove)
       mapModel.getLocation(function(coords){
         getIncompleteStories(coords, showStories, mapModel);
       })
@@ -21,7 +23,7 @@ StoryView.prototype = {
 
 
   registerCompleteStoriesEventHandler: function(mapModel, getCompleteStories, showCompleteStories) {
-    this.selector.on('click', '#complete_stories_button', function(e){
+    this.selector.on('click', 'a[href="#completed"]', function(e){
       e.preventDefault();
       mapModel.getLocation(function(coords){
         getCompleteStories(coords, showCompleteStories, mapModel);
@@ -82,12 +84,11 @@ StoryView.prototype = {
   },
 
   showIncompleteStories: function(story, address){
-    $('.post-wrapper').attr('id', 'origin');
+    $('.main-story').first().hide()
     if(!story.completed){
-      console.log(story)
       $('.post-wrapper').append('<div id=story_' + story.id + '></div>')
       current_story = '#story_' + story.id
-      $('#origin .main-story').first().clone().appendTo(current_story)
+      $('.main-story').first().clone().show().appendTo(current_story)
       $(current_story + ' .pull-left').append(story.title);
       $(current_story + ' .pull-right').append(address);
 
@@ -101,17 +102,21 @@ StoryView.prototype = {
 
   showCompleteStories: function(story, address){
     console.log(story)
+    $('.main-story').first().hide()
     if(story.completed){
-    var storyHTML = '<div id="story_' + story.id + '">';
-    storyHTML += '<li>';
-    storyHTML += '<h2>' + story.title + '</h2>';
-    storyHTML +=  '<h3>'+ address + '</h3>'
-    storyHTML += '<p>'+story.first_contribution['content']+'</p>'
-    storyHTML += '<button class="full_story_button" value="' + story.id + '">See more</button>';
-    storyHTML += '</li>';
-    storyHTML += '</div>';
-    $('#container').prepend(storyHTML);
+      $('.post-wrapper').append('<div id=story_' + story.id + '></div>')
+      current_story = '#story_' + story.id
+      $('.main-story').first().clone().show().appendTo(current_story)
+      $(current_story + ' .pull-left').append(story.title);
+      $(current_story + ' .pull-right').append(address);
+
+      if(story.contribution_length > 0 ){
+        $(current_story + ' .desc').append(story.first_contribution['content'])
+      }else{
+        $(current_story + ' .desc').append(' ')
+      }
     }
+
   },
 
   showCreateStoryForm: function(){
