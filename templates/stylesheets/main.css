@@ -1,0 +1,219 @@
+form.form-control {
+  margin: 0 0 10px 0;
+  padding-top: 1em;
+}
+form.form-control input.input-form {
+  border-radius: 4px;
+  outline: none;
+  box-shadow: none;
+  border-color: #CCC;
+  height: 25px;
+  border: 1px solid #4FC3F7;
+  transition: all 0.1s linear;
+  width: 89%;
+  line-height: 1.42857143;
+  padding: 6px 15px;
+  background-color: #FFF;
+}
+form.form-control .group-form:last-child {
+  margin-top: 40px;
+}
+.cell-9 {
+  width: 90%;
+}
+.cell-5 {
+  width: 49%;
+}
+@media only screen and (max-width: 870px) {
+  .cell-5 {
+    width: 47%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .cell-5 {
+    width: 96%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .cell-5.pull-right > p {
+    margin-left: -18px;
+    padding: 5px 5px 0 5px;
+  }
+}
+#slider {
+  position: relative;
+}
+.ui-slider {
+  width: 100%;
+  background: #428bca;
+  border: 4px solid #788;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 30px 0 0 30px;
+}
+@media only screen and (max-width: 500px) {
+  .ui-slider {
+    width: 86.5%;
+  }
+}
+.ui-slider a {
+  outline: none;
+}
+.ui-slider a:focus {
+    outline: none;
+}
+.ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  width: 5.2em;
+  margin: -18px -50px;
+  text-align: center;
+  line-height: 35px;
+  color: #FFF;
+  font-size: 15px;
+}
+.ui-slider .ui-slider-handle label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  background: #428bca;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 4.2em;
+}
+.row-left, .row-right {
+  color: #FFF;
+}
+#centered-menu .search-container {
+  width: 46%;
+  background: #4FC3F7;
+  border: 2px #4FC3F7 solid;
+  border-radius: 10px;
+  height: 32px;
+}
+/*@media only screen and (max-width: 1170px) {
+  #centered-menu .search-container {
+    width: 97%;
+    margin: 2px 15px;
+  }
+}
+@media only screen and (max-width: 610px) {
+  #centered-menu .search-container {
+    width: 98%;
+    margin: 2px 5px;
+  }
+}*/
+#centered-menu .search-container input{
+  height:30px !important;
+  width: 90%;
+  margin-top: -3px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+}
+#centered-menu .search-container input:focus{
+  border-radius: 10px;
+  background: #f2f2f2;
+  color: #222;
+  outline: 0;
+}
+/*@media only screen and (max-width: 445px) {
+  #centered-menu .search-container input:focus {
+    padding: 9px 0 8px 10px;
+  }
+}
+@media only screen and (max-width: 424px) {
+  #centered-menu .search-container input:focus {
+    padding: 9px 0 9px 10px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  #centered-menu .search-container input:focus {
+    padding: 10px 5px;
+  }
+}
+@media only screen and (max-width: 610px) {
+  #centered-menu .search-container input {
+    width: 80%;
+  }
+}*/
+#centered-menu .search-container input#search_submit {
+  border: none;
+  background-color: #4FC3F7;
+  background-image: url("../images/searchicon.png");
+  padding: 3px 10px;
+  width:40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  height: 25px !important;
+  margin-top: 2px;
+}
+#centered-menu ul li{
+  padding-top: 0;
+}
+@media only screen and (max-width: 1210px) {
+  #centered-menu .search-container{
+    width: 96.5%;
+    margin: 2px 15px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  #centered-menu .search-container input {
+    width:80%;
+    margin-top: 0;
+  }
+  #centered-menu .search-container{
+    width: 96.5%;
+    margin: 2px 5px;
+  }
+  #centered-menu .search-container input#search_submit {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 345px) {
+  #centered-menu .search-container {
+    width: 89.5%;
+    margin: 2px 25px;
+  }
+  #centered-menu ul li {
+    width: 255px;
+  }
+}
+/*@media only screen and (max-width: 1170px) {
+  #centered-menu .search-container input#search_submit {
+    background-size: 60%;
+  }
+}
+@media only screen and (max-width: 610px) {
+  #centered-menu .search-container input#search_submit {
+    background-size: 80%;
+  }
+}
+@media only screen and (max-width: 495px) {
+  #centered-menu .search-container input#search_submit {
+    height: 34px;
+  }
+}
+@media only screen and (max-width: 445px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 9px;
+    height: 33px;
+  }
+}
+@media only screen and (max-width: 424px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 11px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  #centered-menu .search-container input#search_submit {
+    padding: 12px;
+  }
+}
+*/

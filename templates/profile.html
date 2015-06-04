@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="icon" type="image/x-icon" href="images/book-icon.gif">
+    <link href="stylesheets/custom.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/profile.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stories.css">
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="stylesheets/idangerous.swiper.css">
+    <script src="js/vendor/jquery-2.0.3.min.js"></script>
+    <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/profile.js"></script>
+  </head>
+  <body>
+    <nav id="slideMenu">
+      <ul>
+        <li onClick="window.location.href = 'index.html';">
+          <div class="right"><span>Home</span></div>
+        </li>
+        <li onClick="window.location.href = 'stories.html';">
+          <div class="right"><span>Stories</span></div>
+        </li>
+        <li onClick="window.location.href = 'contribution.html';">
+          <div class="right"><span>Contributions</span></div>
+        </li>
+        <li onClick="window.location.href = 'profile.html';">
+          <div class="right"><span>Profile</span></div>
+        </li>
+      </ul>
+    </nav>
+    <header id="logo">
+      <div id="nav-button"></div>
+      <div class="logo">
+        <img src="images/bookicon.png">
+      </div>
+    </header>
+    <section id="main">
+      <div class="content-wrapper">
+        <article>
+          <div id="content" class="post-wrapper noCursor" >
+            <div id="user-profile">
+              <div id="userphoto" class="desc-column">
+                <img src="images/avatar.png" alt="default avatar">
+              </div>
+              <div class="desc-column" id="profile-title">
+                <span class="title color-red">USER PROFILE</span>
+              </div>
+              <div class="clearfix"></div>
+              <nav id="profiletabs">
+                <a href="#info" class="sel">Info</a>
+                <a href="#contributions">Contribution</a>
+                <a href="#settings">Settings</a>
+              </nav>
+              <div class="clearfix"></div>
+              <section id="info">
+                <ul class="show-hide max-height">
+                  <li>
+                    <i class="more bottom-right open-1"></i>
+                    <div class="desc-column">
+                      <span class="color-red">Information:</span>
+                      <p class="desc">
+                        Can't a guy call his mother pretty without it seeming strange? Amen. I think that's one of Mom's little fibs, you know, like I'll sacrifice anything for my children.She's always got to wedge herself in the middle of us so that she can control everything. Yeah. Mom's awesome. I run a pretty tight ship around here. With a pool table.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+              <section id="contributions" class="hidden">
+                <ul id="contributionslist" class="show-hide max-height">
+                  <li>
+                    <i class="more bottom-right open-1"></i>
+                    <div class="desc-column">
+                      <span class="color-red">Contributions List:</span>
+                      <p class="desc"> Once upon a time there was a pink elephant named jenny. She enjoyed walking around town until one day she came across a turtle. This turtle was not very nice to her and demanded for the elephant to hand over her money. </p>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+              <section id="settings" class="hidden">
+                <ul id="contributionslist" class="show-hide max-height">
+                  <li>
+                    <i class="more bottom-right open-1"></i>
+                    <div class="desc-column">
+                      <span class="color-red">Setting:</span>
+                      <p class="desc"> E-mail: sreynak.chet@gmail.com <img src="images/edit.png" alt="*Edit*"></p>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>
